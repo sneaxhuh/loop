@@ -1,5 +1,7 @@
 # Live Qloo and Gemini evidence — October 7, 2026
 
+Public reproducible book evidence is bundled in [the request/result extract](evidence/loop-request.json), [the saved candidate and reference pool](../loop_app/data/demo.json), and [all twenty-four parsed book rankings](../loop_app/data/rankings.json). Historical `runs/` links below refer to local evidence directories excluded from source control.
+
 Both supplied keys authenticated. The matched experiment now contains **48 successful ranking responses**: twelve Qloo and twelve Gemini requests for each of the artist and book pools. Both concepts pass all six shared mechanism gates. **Product selection remains pending** because ownership, offers, availability, and costs are synthetic test conditions; participant and organizer validation has not happened. This shows that the ranking source changes feasible decisions, not that Qloo predicts people's preferences better.
 
 ## Matched comparison
@@ -115,4 +117,4 @@ Next requirements:
 3. Resolve that actual inventory, freeze a new participant experiment, collect acceptance of a precise ≥3-owner proposal, and test a withdrawal.
 4. Obtain credible organizer inputs before Understudy can qualify as a product.
 
-The mechanism passes for both public pools against the specified Flash-Lite baseline. The next evidence is independent preference agreement and acceptance on actual offered books, or credible organizer inputs. Product code remains gated on that evidence.
+The mechanism passes for both public pools against the specified Flash-Lite baseline. The user subsequently authorized the seeded Loop prototype, which preserves the distinction between fictional examples and owner-declared circles. Independent preference agreement and acceptance on actual offered books remain pending; prototype development does not constitute passage of those product gates.

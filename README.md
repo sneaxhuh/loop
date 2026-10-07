@@ -1,5 +1,7 @@
 # Loop — taste-guided book exchanges
 
+**Live app:** [loop-qloo.onrender.com](https://loop-qloo.onrender.com). The organizer password is `LOOP_ADMIN_PASSWORD` in the [Render service's Environment tab](https://dashboard.render.com/web/srv-db32vlcs728c73b5s4o0/env). Readers use private links from **Invite readers**. The hosted workspace uses Postgres; the included example has fictional owners and genuine saved Qloo rankings.
+
 Loop is a working web app: create a four-reader circle, add 8–20 owned book titles, choose cultural references, find closed book exchanges, and repair the proposal after a withdrawal. Invite readers through private links so they can accept, pass and replan, edit their own favorites, or withdraw their own copies. Circles can be saved, switched, edited, and backed up. One Gemini agent invokes workspace tools; an exact deterministic solver selects the handoffs. The example circle uses genuine captured Qloo rankings with **fictional owners and offers**; personal circles use owner-declared inventory and chosen references. The app does not claim Qloo outperforms Gemini on people's preferences.
 
 ```sh

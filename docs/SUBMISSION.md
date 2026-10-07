@@ -1,6 +1,6 @@
 # Loop — Your next chapter is on someone else's shelf
 
-**Draft submission copy.** The source and reproducible prototype are ready; add the published demo URL and your recorded video before submitting on Devpost. Actual participant evaluation remains pending.
+**Draft submission copy.** [The published prototype](https://loop-qloo.onrender.com) and source are ready; add your recorded video before submitting on Devpost. Actual participant evaluation remains pending. Organizer access is password protected; provide judges with a dedicated fictional-reader link or temporary organizer access through the submission's private access instructions.
 
 ## Problem and product
 

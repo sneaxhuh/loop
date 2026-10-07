@@ -2,6 +2,8 @@
 
 The source repository is [sneaxhuh/loop](https://github.com/sneaxhuh/loop). [`render.yaml`](../render.yaml) defines a free Python web service and free Postgres database in Singapore. The local version needs no database; hosted circles, private invitations, reviews, live rankings, and redacted request evidence should use Postgres so they survive web-service restarts.
 
+The October 7 deployment is [loop-qloo.onrender.com](https://loop-qloo.onrender.com), backed by [loop-data](https://dashboard.render.com/d/dpg-db32govavr4c739igi00-a). Organizer secrets are in the [web service's Environment tab](https://dashboard.render.com/web/srv-db32vlcs728c73b5s4o0/env). The database URL was copied directly in Render and was not put into chat or the repository.
+
 ## Deploy a clean instance
 
 Use [Render's Blueprint creation page](https://dashboard.render.com/select-repo?type=blueprint), select the repository, and review the **free** service and database plans. Supply `QLOO_API_KEY` and `GEMINI_API_KEY` in Render's secret prompts. The Blueprint generates `LOOP_ADMIN_PASSWORD` and binds `LOOP_DATABASE_URL` to the database's internal connection string. Do not commit these values.
