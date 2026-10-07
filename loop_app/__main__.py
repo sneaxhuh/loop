@@ -262,6 +262,8 @@ def main():
     args = parser.parse_args()
     if args.host not in {"127.0.0.1", "localhost", "::1"} and len(os.getenv("LOOP_ADMIN_PASSWORD", "")) < 16:
         parser.error("Set a server-side LOOP_ADMIN_PASSWORD of at least 16 characters before hosting publicly.")
+    if args.host not in {"127.0.0.1", "localhost", "::1"}:
+        os.environ["LOOP_HOSTED"] = "1"
     directory = Path(args.workspace)
     directory.mkdir(parents=True, exist_ok=True)
     with workspace_lock(directory):

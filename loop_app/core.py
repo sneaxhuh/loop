@@ -105,6 +105,7 @@ class Workspace:
         with self.lock:
             result = copy.deepcopy(self.state)
             result.update(busy=self.busy, capabilities={"live_qloo": self.qloo is not None,
+                "persistent_storage": bool(self.store.url), "hosted": bool(os.getenv("LOOP_HOSTED")),
                 "gemini": bool(os.getenv("GEMINI_API_KEY")), "model": os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")},
                 captured_at=max((r.get("captured_at", self.capture["captured_at"]) for r in self.state["ranking_info"].values()), default=self.capture["captured_at"]))
             result["baseline"] = {}
@@ -191,6 +192,7 @@ class Workspace:
             return sorted(result, key=lambda x: (x["demo"], x["name"].lower()))
 
     def create_circle(self, draft, data, emit):
+        require(not os.getenv("LOOP_HOSTED") or self.store.url, "Connect persistent storage before creating a hosted reading circle. The demo remains available.")
         name = data.get("name", "")
         require(isinstance(name, str) and 1 <= len(name.strip()) <= 60, "Name the reading circle (up to 60 characters).")
         participants = data.get("participants")

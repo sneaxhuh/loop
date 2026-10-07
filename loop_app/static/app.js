@@ -43,6 +43,8 @@ async function showInvites(rotate=false){
 function controls(busy) {
   document.querySelectorAll('button[data-mutation], #plan-button, #disruption-button, #reset-button, #chat-send, #new-circle-hero, #create-circle-button, #taste-tabs button').forEach(b => { b.disabled = busy; });
   $('chat-input').disabled = busy;
+  const temporary=state.capabilities.hosted&&!state.capabilities.persistent_storage;
+  $('new-circle-hero').disabled=busy||temporary;$('create-circle-button').disabled=busy||temporary;
   $('agent-status').textContent = busy ? 'Working on the shared shelf…' : 'Ready when you are';
   $('plan-button').innerHTML = busy ? 'Finding a way…' : 'Find a loop <span>↗</span>';
 }
@@ -77,6 +79,7 @@ async function run(action, data = {}, message = '') {
 }
 function render() {
   $('logout-button').hidden=!state.organizer_login;
+  $('storage-notice').hidden=!(state.capabilities.hosted&&!state.capabilities.persistent_storage);
   $('connection-error').hidden = true;
   $('avatar-stack').innerHTML = people().map(avatar).join('');
   $('circle-name').textContent=state.fixture.name || 'Our little reading circle';
