@@ -1,0 +1,55 @@
+const $=id=>document.getElementById(id);
+const escape=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const token=new URLSearchParams(location.hash.slice(1)).get('token')||'';
+let view,working=false,edit,results=[],toastTimer;
+async function api(path,body={}){
+  const response=await fetch('/api/reader/'+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...body,token})});
+  const data=await response.json();if(!response.ok)throw new Error(data.error||'Your request could not finish.');return data;
+}
+function toast(message){$('toast').textContent=message;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>{$('toast').hidden=true;},6000);}
+function cover(book){return `<div class="reader-cover"><span class="reader-cover-series">FROM ONE GOOD SHELF TO ANOTHER</span><strong>${escape(book.name)}</strong><span>${escape(book.author)}</span><i aria-hidden="true"></i></div>`;}
+function render(){
+  document.title=`${view.person.name}’s next chapter — Loop`;$('circle-label').textContent=view.circle;
+  const p=view.person,accepted=view.approval?.accepted===true,busy=working||view.busy;
+  $('reader-content').innerHTML=`<section class="reader-hero"><div class="eyebrow">A NEW CHAPTER, WITH YOUR NAME ON IT.</div><h1>${escape(p.name)},<br>meet your <em>next chapter.</em></h1><p>A book from someone else’s shelf. A little serendipity from the things you already love.</p><span class="badge reader-scenario">${view.demo?'Example circle · fictional owners and offers':'Your circle · owner-declared books'}</span></section>
+    <div id="reader-progress" class="notice reader-progress" ${busy?'':'hidden'} role="status">The circle is finding another way. Your previous proposal stays here until the new one is ready.</div>
+    <section class="panel reader-proposal">${view.incoming?`<div class="reader-book-art">${cover(view.incoming.book)}</div><div class="reader-book-info"><div class="eyebrow muted">YOUR PROPOSED INCOMING BOOK</div><h2>${escape(view.incoming.book.name)}</h2><p class="reader-author">${escape(view.incoming.book.author)}</p><p class="reader-from">From ${escape(view.incoming.reader)}’s shelf <span>→ yours</span></p><div class="reader-taste-proof"><span>✳</span><p>Qloo ranked this <strong>#${Number(view.rank?.toFixed(1))} of ${view.pool_size}</strong> for your chosen references.<small>This is a relative cultural match. You decide whether it’s a book you want.</small></p></div>${view.outgoing?`<div class="reader-outgoing"><span class="eyebrow muted">IN RETURN, YOUR STORY TRAVELS ON</span><p><strong>${escape(view.outgoing.book.name)}</strong> goes to ${escape(view.outgoing.reader)}.</p></div>`:''}<div class="reader-review"><p>${accepted?'You accepted this proposal.':'Does this look like your next good read?'}</p><div class="dialog-actions"><button class="button primary" data-accept ${busy||accepted?'disabled':''}>${accepted?'✓ You’re in':'Yes, I’m in ↗'}</button><button class="button ghost" data-pass ${busy?'disabled':''}>Pass & find another way</button></div></div></div>`:`<div class="reader-empty"><span>↻</span><div class="eyebrow muted">LET’S LEAVE ROOM FOR THE RIGHT BOOK</div><h2>${view.status==='no_exchange'?'No exchange fits just yet.':'You’re sitting this loop out.'}</h2><p>${view.status==='no_exchange'?'The current offers and reading restrictions do not form a closed exchange. Your books stay with you.':'This proposal does not have an incoming book for you. The agent may include you when the shelf or preferences change.'}</p><p>You can restore an offered copy or update your favorites below.</p></div>`}</section>
+    ${view.incoming?`<div class="reader-status ${view.ready?'ready':''}"><span>${view.ready?'✓':'◌'}</span><div><strong>${view.ready?'Everyone involved has accepted.':`${view.accepted_count} of ${view.involved_count} readers have accepted.`}</strong><p>${view.ready?'Ask your organizer to arrange the handoffs. No physical books have been moved by the app.':'The exchange remains a proposal until everyone involved accepts. A changed proposal needs a fresh review.'}</p></div></div>`:''}
+    <div class="reader-lower-grid"><section class="panel reader-taste"><div class="eyebrow muted">THE THINGS THAT OPEN NEW DOORS</div><h2>A little about your taste.</h2><div class="reader-reference-list">${view.references.map(r=>`<span class="taste-chip">${escape(r.name)}<small>${escape(r.type)}</small></span>`).join('')}</div><p>Only the public cultural references you choose go to Qloo. Your name and who owns each copy stay in Loop.</p><button class="button ghost" id="edit-taste" ${busy?'disabled':''}>Make it feel more like you ↗</button></section><section class="panel reader-shelf"><div class="eyebrow muted">ALREADY LOVED. READY TO TRAVEL.</div><h2>Your offered books.</h2><div>${view.offered.map(b=>`<article class="reader-offer ${b.available?'':'withdrawn'}"><div><strong>${escape(b.name)}</strong><small>${escape(b.author)} · ${b.available?'Offered':'Withdrawn'}</small></div><button class="text-button reader-offer-action" data-copy="${escape(b.id)}" data-action="${b.available?'withdraw':'restore'}" ${busy?'disabled':''}>${b.available?'Withdraw':'Restore'} ↗</button></article>`).join('')}</div><p>Changing an offer replans the circle. Only your own copies can be changed from this link.</p></section></div>
+    <p class="reader-disclosure">${view.demo?'You’re exploring a fictional circle with genuine captured Qloo rankings. Reviews here are demo interactions.':'Matches are cultural suggestions, not promises about individual preference. Your organizer supplied the ownership and offer information.'}</p>`;
+}
+async function reload(){view=await api('view');render();}
+async function update(action,data={}){
+  if(working||view.busy)return toast('The circle is already updating. Wait a moment.');
+  working=true;render();
+  try{
+    const result=await api('update',{action,...data,revision:view.revision,proposal_id:view.proposal_id});let job;
+    do{await new Promise(resolve=>setTimeout(resolve,700));job=await api('job',{job_id:result.job_id});if($('reader-progress'))$('reader-progress').textContent=(job.trace||[]).map(t=>t.tool.replaceAll('_',' ')).slice(-3).join(' → ')||'Finding another way…';}while(job.status==='running');
+    await reload();if(job.status==='error')throw new Error(job.error);
+    toast(view.incoming?'Your revised proposal is ready to review.':'No incoming book fits right now. Your offered copies have not moved.');
+  }catch(e){toast(e.message);try{await reload();}catch(_) {}}
+  finally{working=false;render();}
+}
+function editTaste(){
+  edit={references:structuredClone(view.references),languages:[...view.person.languages]};results=[];
+  $('profile-content').innerHTML=`<div class="eyebrow muted">MORE YOU. MORE POSSIBILITY.</div><h2>What do you already love?</h2><p class="dialog-subtitle">Choose one to eight public artists, films, brands, or books. Select the intended match after searching.</p><div id="reader-ref-chips" class="editable-chips"></div><form id="reader-search" class="input-row"><select id="reader-ref-type" aria-label="Reference type"><option value="artist">Artist</option><option value="movie">Film</option><option value="brand">Brand</option><option value="book">Book</option></select><input id="reader-ref-query" placeholder="A public favorite…" maxlength="100" minlength="2" required aria-label="Search a public favorite"><button class="button ghost">Search</button></form><div id="reader-ref-results" class="search-results"></div><label class="field-label" for="reader-language">Your reading language</label><select id="reader-language" class="dialog-select">${[['en','English'],['fr','French'],['hi','Hindi'],['es','Spanish'],['','Any language']].map(([id,name])=>`<option value="${id}" ${(view.person.languages[0]||'')===id?'selected':''}>${name}</option>`).join('')}</select><p id="profile-error" class="inline-error" role="status"></p><div class="dialog-actions"><button class="button primary" id="save-taste">Save & find another way ↗</button><button class="button ghost" id="cancel-taste">Keep my current favorites</button></div>`;
+  renderChips();$('reader-dialog').showModal();
+  $('cancel-taste').onclick=closeEdit;
+  $('reader-search').onsubmit=async e=>{e.preventDefault();const root=$('reader-ref-results');root.textContent='Finding public matches…';try{const data=await api('search',{type:$('reader-ref-type').value,query:$('reader-ref-query').value});if(!edit)return;results=data.results;root.innerHTML=results.map((r,i)=>`<button class="search-result" data-add-ref="${i}">${escape(r.name)}<small>${escape(r.disambiguation||r.type)}</small></button>`).join('')||'No public match found. Try another spelling.';}catch(e){if(edit)root.textContent=e.message;}};
+  $('save-taste').onclick=()=>{if(!edit.references.length)return $('profile-error').textContent='Choose at least one confirmed favorite.';const data={references:edit.references,languages:$('reader-language').value?[$('reader-language').value]:[]};closeEdit();update('profile',data);};
+}
+function renderChips(){if(edit)$('reader-ref-chips').innerHTML=edit.references.map((r,i)=>`<span class="taste-chip">${escape(r.name)}<button data-remove-ref="${i}" aria-label="Remove ${escape(r.name)}">×</button></span>`).join('')||'<span class="dialog-subtitle">Choose a favorite below.</span>';}
+function closeEdit(){edit=null;$('reader-dialog').close();}
+document.addEventListener('click',async event=>{
+  const button=event.target.closest('button');if(!button||button.disabled||!view)return;
+  if(button.hasAttribute('data-accept')){button.disabled=true;try{await api('accept',{proposal_id:view.proposal_id});await reload();toast(view.demo?'Demo acceptance saved.':'Your acceptance is saved.');}catch(e){toast(e.message);await reload();}}
+  else if(button.hasAttribute('data-pass'))update('decline');
+  else if(button.dataset.copy)update(button.dataset.action,{copy_id:button.dataset.copy});
+  else if(button.id==='edit-taste')editTaste();
+  else if(button.dataset.removeRef!==undefined&&edit){edit.references.splice(Number(button.dataset.removeRef),1);renderChips();}
+  else if(button.dataset.addRef!==undefined&&edit){const r=results[Number(button.dataset.addRef)];if(edit.references.length>=8)return $('profile-error').textContent='Choose at most eight favorites.';if(!edit.references.some(x=>x.qloo_id===r.qloo_id))edit.references.push(r);renderChips();$('reader-ref-results').textContent='';$('reader-ref-query').value='';}
+});
+$('reader-dialog').querySelector('.dialog-close').onclick=closeEdit;
+$('reader-dialog').addEventListener('cancel',()=>{edit=null;});
+reload().catch(e=>{$('reader-content').innerHTML=`<section class="reader-empty"><div class="eyebrow muted">A LITTLE HELP FINDING YOUR WAY</div><h1>Let’s find <em>your circle.</em></h1><p>${escape(e.message)}</p><p>Open the full private link from your organizer, including the part after #.</p></section>`;});
+setInterval(()=>{if(view&&!working&&!edit)reload().catch(()=>{});},8000);

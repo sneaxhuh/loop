@@ -1,0 +1,564 @@
+{
+  "version": 1,
+  "id": "loop-public-title-probe",
+  "kind": "loop",
+  "provenance": "synthetic_test",
+  "note": "Public-title API coverage probe. Titles are real cultural works; all ownership, offers, availability, language labels and experimental profiles are synthetic test conditions. No participant preferences or actual offered copies have been collected. Rankings will be live Qloo responses; no preference-quality claim is supported.",
+  "candidates": [
+    {
+      "id": "book-01",
+      "name": "Frankenstein",
+      "author": "Mary Shelley",
+      "type": "book",
+      "owner": "P1",
+      "available": true,
+      "offered": true,
+      "language": "en",
+      "qloo_id": "0E5EEC3E-C08F-4871-B379-29069C19D404",
+      "confirmed": true,
+      "resolved_name": "Frankenstein: The 1818 Text",
+      "qloo_disambiguation": "1818, Mary Wollstonecraft Shelley",
+      "qloo_isbn13": "9780143131847"
+    },
+    {
+      "id": "book-02",
+      "name": "Dune",
+      "author": "Frank Herbert",
+      "type": "book",
+      "owner": "P1",
+      "available": true,
+      "offered": true,
+      "language": "en",
+      "qloo_id": "9BA85467-2189-46DC-BB98-4B25EE182A9D",
+      "confirmed": true,
+      "resolved_name": "Dune (Dune, #1)",
+      "qloo_disambiguation": "1965, Frank Herbert",
+      "qloo_isbn13": "9780593099322"
+    },
+    {
+      "id": "book-03",
+      "name": "Beloved",
+      "author": "Toni Morrison",
+      "type": "book",
+      "owner": "P1",
+      "available": true,
+      "offered": true,
+      "language": "en",
+      "qloo_id": "8B7B61C3-BF4D-4B18-A443-13DB229DC913",
+      "confirmed": true,
+      "resolved_name": "Beloved (Beloved Trilogy, #1)",
+      "qloo_disambiguation": "1987, Toni Morrison",
+      "qloo_isbn13": "9781400033416"
+    },
+    {
+      "id": "book-04",
+      "name": "The Left Hand of Darkness",
+      "author": "Ursula K. Le Guin",
+      "type": "book",
+      "owner": "P1",
+      "available": true,
+      "offered": true,
+      "language": "en",
+      "qloo_id": "4D73C871-CC0F-4FC8-88CD-7C59B26E087E",
+      "confirmed": true,
+      "resolved_name": "The Left Hand of Darkness",
+      "qloo_disambiguation": "1969, Ursula K. Le Guin",
+      "qloo_isbn13": null
+    },
+    {
+      "id": "book-05",
+      "name": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "type": "book",
+      "owner": "P2",
+      "available": true,
+      "offered": true,
+      "language": "en",
+      "qloo_id": "FB39AE3C-D31A-4677-8E07-3D0A42EB67B2",
+      "confirmed": true,
+      "resolved_name": "Pride and Prejudice",
+      "qloo_disambiguation": "1813, Jane Austen",
+      "qloo_isbn13": null
+    },
+    {
+      "id": "book-06",
+      "name": "The Hobbit",
+      "author": "J. R. R. Tolkien",
+      "type": "book",
+      "owner": "P2",
+      "available": true,
+      "offered": true,
+      "language": "en",
+      "qloo_id": "881D224A-C331-4B87-975B-8FA0546391D3",
+      "confirmed": true,
+      "resolved_name": "The Hobbit, or There and Back Again",
+      "qloo_disambiguation": "1937, J.R.R. Tolkien",
+      "qloo_isbn13": "9780618260300"
+    },
+    {
+      "id": "book-07",
+      "name": "Never Let Me Go",
+      "author": "Kazuo Ishiguro",
+      "type": "book",
+      "owner": "P2",
+      "available": true,
+      "offered": true,
+      "language": "en",
+      "qloo_id": "3ADBB2A8-6788-4CD9-93C4-417CAF2C789B",
+      "confirmed": true,
+      "resolved_name": "Never Let Me Go",
+      "qloo_disambiguation": "2005, Kazuo Ishiguro",
+      "qloo_isbn13": "9781400078776"
+    },
+    {
+      "id": "book-08",
+      "name": "The Stranger",
+      "author": "Albert Camus",
+      "type": "book",
+      "owner": "P2",
+      "available": true,
+      "offered": true,
+      "language": "en",
+      "qloo_id": "5373FA79-91A0-478D-96B3-B5B78ABF84CA",
+      "confirmed": true,
+      "resolved_name": "The Stranger",
+      "qloo_disambiguation": "1942, Albert Camus",
+      "qloo_isbn13": null
+    },
+    {
+      "id": "book-09",
+      "name": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "type": "book",
+      "owner": "P3",
+      "available": true,
+      "offered": true,
+      "language": "en",
+      "qloo_id": "6A4CF4C4-B833-44E1-A426-BB312130C9F3",
+      "confirmed": true,
+      "resolved_name": "The Great Gatsby",
+      "qloo_disambiguation": "1925, F. Scott Fitzgerald",
+      "qloo_isbn13": "9780743273565"
+    },
+    {
+      "id": "book-10",
+      "name": "The Handmaid's Tale",
+      "author": "Margaret Atwood",
+      "type": "book",
+      "owner": "P3",
+      "available": true,
+      "offered": true,
+      "language": "en",
+      "qloo_id": "2E76F365-7C08-4DDF-8C49-CC27582788E5",
+      "confirmed": true,
+      "resolved_name": "The Handmaid's Tale",
+      "qloo_disambiguation": "1985, Margaret Atwood",
+      "qloo_isbn13": "9781328879943"
+    },
+    {
+      "id": "book-11",
+      "name": "The Name of the Rose",
+      "author": "Umberto Eco",
+      "type": "book",
+      "owner": "P3",
+      "available": true,
+      "offered": true,
+      "language": "en",
+      "qloo_id": "EB337B84-0450-49B0-98CE-11838BBFDE1E",
+      "confirmed": true,
+      "resolved_name": "The Name of the Rose",
+      "qloo_disambiguation": "1980, Umberto Eco",
+      "qloo_isbn13": "9780156001311"
+    },
+    {
+      "id": "book-12",
+      "name": "The Road",
+      "author": "Cormac McCarthy",
+      "type": "book",
+      "owner": "P3",
+      "available": true,
+      "offered": true,
+      "language": "en",
+      "qloo_id": "B248BC9F-15C3-424F-AC89-DDBC1D94915A",
+      "confirmed": true,
+      "resolved_name": "The Road",
+      "qloo_disambiguation": "2006, Cormac McCarthy",
+      "qloo_isbn13": "9780307265432"
+    },
+    {
+      "id": "book-13",
+      "name": "Jane Eyre",
+      "author": "Charlotte Bronte",
+      "type": "book",
+      "owner": "P4",
+      "available": true,
+      "offered": true,
+      "language": "en",
+      "qloo_id": "AB552CDE-3953-417D-8DC4-7CAA7333C7DF",
+      "confirmed": true,
+      "resolved_name": "Jane Eyre",
+      "qloo_disambiguation": "1847, Charlotte Brontë",
+      "qloo_isbn13": "9780142437209"
+    },
+    {
+      "id": "book-14",
+      "name": "The Dispossessed",
+      "author": "Ursula K. Le Guin",
+      "type": "book",
+      "owner": "P4",
+      "available": true,
+      "offered": true,
+      "language": "en",
+      "qloo_id": "C75EA743-C08D-4DBF-B456-AC6B71AC14AC",
+      "confirmed": true,
+      "resolved_name": "The Dispossessed: An Ambiguous Utopia",
+      "qloo_disambiguation": "1974, Ursula K. Le Guin",
+      "qloo_isbn13": "9780061054884"
+    },
+    {
+      "id": "book-15",
+      "name": "The Secret History",
+      "author": "Donna Tartt",
+      "type": "book",
+      "owner": "P4",
+      "available": true,
+      "offered": true,
+      "language": "en",
+      "qloo_id": "4862C8C1-0412-4042-BF3E-D56DEAFEF854",
+      "confirmed": true,
+      "resolved_name": "The Secret History",
+      "qloo_disambiguation": "1992, Donna Tartt",
+      "qloo_isbn13": "9781400031702"
+    },
+    {
+      "id": "book-16",
+      "name": "The Remains of the Day",
+      "author": "Kazuo Ishiguro",
+      "type": "book",
+      "owner": "P4",
+      "available": true,
+      "offered": true,
+      "language": "en",
+      "qloo_id": "6D14517A-4A91-4CAF-97EE-318377F6D27B",
+      "confirmed": true,
+      "resolved_name": "The Remains of the Day",
+      "qloo_disambiguation": "1989, Kazuo Ishiguro",
+      "qloo_isbn13": null
+    }
+  ],
+  "references": [
+    {
+      "id": "alt-artist-1",
+      "name": "Radiohead",
+      "type": "artist",
+      "qloo_id": "70CAE5BF-2F4C-445C-A3E5-4EDACFC3591C",
+      "confirmed": true
+    },
+    {
+      "id": "alt-artist-2",
+      "name": "Portishead",
+      "type": "artist",
+      "qloo_id": "045707A1-C8EF-443F-A882-1B97AC69DC9A",
+      "confirmed": true
+    },
+    {
+      "id": "alt-movie-1",
+      "name": "Her",
+      "type": "movie",
+      "qloo_id": "4F8EBD51-46DB-4527-BC61-75B56472A50E",
+      "confirmed": true
+    },
+    {
+      "id": "alt-movie-2",
+      "name": "Mulholland Drive",
+      "type": "movie",
+      "qloo_id": "B5F085C2-8C09-4CBD-BF17-9842FB45DE31",
+      "confirmed": true
+    },
+    {
+      "id": "alt-brand-1",
+      "name": "A.P.C.",
+      "type": "brand",
+      "qloo_id": "5A37EDDE-05E4-4FCC-B811-426CF677D6E7",
+      "confirmed": true
+    },
+    {
+      "id": "alt-brand-2",
+      "name": "COS",
+      "type": "brand",
+      "qloo_id": "2CA2569D-223D-42D6-BB2F-F8B5D36B9AEC",
+      "confirmed": true
+    },
+    {
+      "id": "soul-artist-1",
+      "name": "Beyonce",
+      "type": "artist",
+      "qloo_id": "F6754C46-B3E7-457F-8B7E-06C613597320",
+      "confirmed": true
+    },
+    {
+      "id": "soul-artist-2",
+      "name": "SZA",
+      "type": "artist",
+      "qloo_id": "E2E58680-EE3F-4D1D-88B6-B79F87205B2C",
+      "confirmed": true
+    },
+    {
+      "id": "soul-movie-1",
+      "name": "Black Panther",
+      "type": "movie",
+      "qloo_id": "E743BA08-446C-4BB1-8AE2-1B813A18F162",
+      "confirmed": true
+    },
+    {
+      "id": "soul-movie-2",
+      "name": "Moonlight",
+      "type": "movie",
+      "qloo_id": "2955F3C4-36AB-49F3-A818-3597F35EF46C",
+      "confirmed": true
+    },
+    {
+      "id": "soul-brand-1",
+      "name": "Nike",
+      "type": "brand",
+      "qloo_id": "C70CE2B8-0AD1-4150-BF18-5A6347F2E860",
+      "confirmed": true
+    },
+    {
+      "id": "soul-brand-2",
+      "name": "Fenty Beauty",
+      "type": "brand",
+      "qloo_id": "91B0C7A7-2FCF-4D04-8AC7-065F7B0FF9D7",
+      "confirmed": true,
+      "original_query": "Fenty"
+    },
+    {
+      "id": "electronic-artist-1",
+      "name": "Daft Punk",
+      "type": "artist",
+      "qloo_id": "012EF80C-B187-4ECB-9C3D-9CA5228B503C",
+      "confirmed": true
+    },
+    {
+      "id": "electronic-artist-2",
+      "name": "Aphex Twin",
+      "type": "artist",
+      "qloo_id": "4278382F-4991-4D63-B207-942D86A26ACB",
+      "confirmed": true
+    },
+    {
+      "id": "electronic-movie-1",
+      "name": "Blade Runner 2049",
+      "type": "movie",
+      "qloo_id": "3A02361C-987B-4F7E-9AAD-071C3853AD92",
+      "confirmed": true
+    },
+    {
+      "id": "electronic-movie-2",
+      "name": "Tron: Legacy",
+      "type": "movie",
+      "qloo_id": "9520D308-3488-4866-93CB-F9410D21A0FF",
+      "confirmed": true
+    },
+    {
+      "id": "electronic-brand-1",
+      "name": "Adidas",
+      "type": "brand",
+      "qloo_id": "FCEA7CA1-1D40-4680-B337-E74594D9BCF1",
+      "confirmed": true
+    },
+    {
+      "id": "roots-artist-1",
+      "name": "Dolly Parton",
+      "type": "artist",
+      "qloo_id": "47FA29CA-A1E6-4EA6-8219-D75190AA6BD1",
+      "confirmed": true
+    },
+    {
+      "id": "roots-artist-2",
+      "name": "Kacey Musgraves",
+      "type": "artist",
+      "qloo_id": "9AAE0224-F8E2-447A-BD05-26D2A9E72573",
+      "confirmed": true
+    },
+    {
+      "id": "roots-movie-1",
+      "name": "Little Women",
+      "type": "movie",
+      "qloo_id": "969911E8-7092-43D9-8C7D-C7547EAE3C00",
+      "confirmed": true
+    },
+    {
+      "id": "roots-movie-2",
+      "name": "O Brother, Where Art Thou?",
+      "type": "movie",
+      "qloo_id": "8FA181E7-8DD8-4154-8CC2-6B931AC10DC2",
+      "confirmed": true
+    },
+    {
+      "id": "roots-brand-1",
+      "name": "Levi's",
+      "type": "brand",
+      "qloo_id": "EE2B58FF-37F6-4521-912F-55EBC25D83E2",
+      "confirmed": true
+    },
+    {
+      "id": "roots-brand-2",
+      "name": "Patagonia",
+      "type": "brand",
+      "qloo_id": "DB4CE34E-3A63-4947-946F-9D52502C5762",
+      "confirmed": true
+    }
+  ],
+  "profiles": [
+    {
+      "id": "profile-alt",
+      "label": "Experimental alternative profile",
+      "variants": {
+        "music_only": [
+          "alt-artist-1",
+          "alt-artist-2"
+        ],
+        "music_movies": [
+          "alt-artist-1",
+          "alt-artist-2",
+          "alt-movie-1",
+          "alt-movie-2"
+        ],
+        "music_brands": [
+          "alt-artist-1",
+          "alt-artist-2",
+          "alt-brand-1",
+          "alt-brand-2"
+        ]
+      }
+    },
+    {
+      "id": "profile-soul",
+      "label": "Experimental soul profile",
+      "variants": {
+        "music_only": [
+          "soul-artist-1",
+          "soul-artist-2"
+        ],
+        "music_movies": [
+          "soul-artist-1",
+          "soul-artist-2",
+          "soul-movie-1",
+          "soul-movie-2"
+        ],
+        "music_brands": [
+          "soul-artist-1",
+          "soul-artist-2",
+          "soul-brand-1",
+          "soul-brand-2"
+        ]
+      }
+    },
+    {
+      "id": "profile-electronic",
+      "label": "Experimental electronic profile",
+      "variants": {
+        "music_only": [
+          "electronic-artist-1",
+          "electronic-artist-2"
+        ],
+        "music_movies": [
+          "electronic-artist-1",
+          "electronic-artist-2",
+          "electronic-movie-1",
+          "electronic-movie-2"
+        ],
+        "music_brands": [
+          "electronic-artist-1",
+          "electronic-artist-2",
+          "electronic-brand-1"
+        ]
+      }
+    },
+    {
+      "id": "profile-roots",
+      "label": "Experimental roots profile",
+      "variants": {
+        "music_only": [
+          "roots-artist-1",
+          "roots-artist-2"
+        ],
+        "music_movies": [
+          "roots-artist-1",
+          "roots-artist-2",
+          "roots-movie-1",
+          "roots-movie-2"
+        ],
+        "music_brands": [
+          "roots-artist-1",
+          "roots-artist-2",
+          "roots-brand-1",
+          "roots-brand-2"
+        ]
+      }
+    }
+  ],
+  "participants": [
+    {
+      "id": "P1",
+      "profile_id": "profile-alt",
+      "languages": [
+        "en"
+      ],
+      "references_attested": false,
+      "human_ranking": [],
+      "ranking_recorded_at": null,
+      "name": "Ava",
+      "initials": "AV",
+      "color": "#d99c85",
+      "bio": "A little strange, a little tender."
+    },
+    {
+      "id": "P2",
+      "profile_id": "profile-soul",
+      "languages": [
+        "en"
+      ],
+      "references_attested": false,
+      "human_ranking": [],
+      "ranking_recorded_at": null,
+      "name": "Milo",
+      "initials": "MI",
+      "color": "#dabd76",
+      "bio": "Stories with soul and something to say."
+    },
+    {
+      "id": "P3",
+      "profile_id": "profile-electronic",
+      "languages": [
+        "en"
+      ],
+      "references_attested": false,
+      "human_ranking": [],
+      "ranking_recorded_at": null,
+      "name": "Noor",
+      "initials": "NO",
+      "color": "#b2bbaa",
+      "bio": "Other worlds. Unexpected possibilities."
+    },
+    {
+      "id": "P4",
+      "profile_id": "profile-roots",
+      "languages": [
+        "en"
+      ],
+      "references_attested": false,
+      "human_ranking": [],
+      "ranking_recorded_at": null,
+      "name": "Theo",
+      "initials": "TH",
+      "color": "#b8a8b9",
+      "bio": "Big feelings, quietly told."
+    }
+  ],
+  "constraints": {
+    "fit_floor": 0.5,
+    "max_cycle_length": 4
+  }
+}

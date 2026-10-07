@@ -1,0 +1,1963 @@
+{
+  "captured_at": "2026-10-07T09:18:56.209546+00:00",
+  "source_fixture_hash": "5f131930c377ddc6a8cd94b6abb3ebcc11f0ded453d392b6e7314a145c184c4d",
+  "evidence_note": "Genuine Qloo and Gemini API results captured October 7, 2026. Offers and ownership are fictional. Gemini baseline is 3.5 Flash-Lite.",
+  "rows": [
+    {
+      "source": "qloo",
+      "profile_id": "profile-alt",
+      "variant": "music_only",
+      "reference_ids": [
+        "alt-artist-1",
+        "alt-artist-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-09"
+        ],
+        [
+          "book-16"
+        ],
+        [
+          "book-08"
+        ],
+        [
+          "book-02"
+        ],
+        [
+          "book-12"
+        ],
+        [
+          "book-10"
+        ],
+        [
+          "book-06"
+        ],
+        [
+          "book-11"
+        ],
+        [
+          "book-07"
+        ],
+        [
+          "book-01"
+        ],
+        [
+          "book-13"
+        ],
+        [
+          "book-14"
+        ],
+        [
+          "book-15"
+        ],
+        [
+          "book-03"
+        ],
+        [
+          "book-04"
+        ],
+        [
+          "book-05"
+        ]
+      ],
+      "raw_scores": {
+        "book-09": 0.7103540535204237,
+        "book-16": 0.6905058563413979,
+        "book-08": 0.6753639158343323,
+        "book-02": 0.6582076025485488,
+        "book-12": 0.6550296496743556,
+        "book-10": 0.6494102842860673,
+        "book-06": 0.6431399960299464,
+        "book-11": 0.6202982626121843,
+        "book-07": 0.619592103449345,
+        "book-01": 0.6179311713626636,
+        "book-13": 0.5979024949714906,
+        "book-14": 0.5963158061023294,
+        "book-15": 0.5937435626058232,
+        "book-03": 0.5710664819106838,
+        "book-04": 0.5198593994607117,
+        "book-05": 0.4361134370060975
+      },
+      "evidence_id": "request-0001"
+    },
+    {
+      "source": "gemini",
+      "profile_id": "profile-alt",
+      "variant": "music_only",
+      "reference_ids": [
+        "alt-artist-1",
+        "alt-artist-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-07",
+          "book-16"
+        ],
+        [
+          "book-08"
+        ],
+        [
+          "book-04",
+          "book-14"
+        ],
+        [
+          "book-12"
+        ],
+        [
+          "book-01",
+          "book-10"
+        ],
+        [
+          "book-03",
+          "book-15"
+        ],
+        [
+          "book-02",
+          "book-06",
+          "book-11"
+        ],
+        [
+          "book-05",
+          "book-09",
+          "book-13"
+        ]
+      ],
+      "model": "gemini-3.5-flash-lite",
+      "raw_scores": {},
+      "evidence_id": "request-0002"
+    },
+    {
+      "source": "qloo",
+      "profile_id": "profile-alt",
+      "variant": "music_movies",
+      "reference_ids": [
+        "alt-artist-1",
+        "alt-artist-2",
+        "alt-movie-1",
+        "alt-movie-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-09"
+        ],
+        [
+          "book-12"
+        ],
+        [
+          "book-07"
+        ],
+        [
+          "book-08"
+        ],
+        [
+          "book-10"
+        ],
+        [
+          "book-16"
+        ],
+        [
+          "book-02"
+        ],
+        [
+          "book-01"
+        ],
+        [
+          "book-15"
+        ],
+        [
+          "book-06"
+        ],
+        [
+          "book-11"
+        ],
+        [
+          "book-14"
+        ],
+        [
+          "book-13"
+        ],
+        [
+          "book-03"
+        ],
+        [
+          "book-04"
+        ],
+        [
+          "book-05"
+        ]
+      ],
+      "raw_scores": {
+        "book-09": 0.8421412446048582,
+        "book-12": 0.8284544418556945,
+        "book-07": 0.8134125608476905,
+        "book-08": 0.8068800330543353,
+        "book-10": 0.8062978494559435,
+        "book-16": 0.7968910518113493,
+        "book-02": 0.766636230691956,
+        "book-01": 0.7654059937780654,
+        "book-15": 0.7467530151762836,
+        "book-06": 0.7322325796742465,
+        "book-11": 0.7091111497869569,
+        "book-14": 0.7077890860275887,
+        "book-13": 0.7054850649631883,
+        "book-03": 0.6991324900180628,
+        "book-04": 0.6452556992378427,
+        "book-05": 0.40053520425974404
+      },
+      "evidence_id": "request-0003"
+    },
+    {
+      "source": "gemini",
+      "profile_id": "profile-alt",
+      "variant": "music_movies",
+      "reference_ids": [
+        "alt-artist-1",
+        "alt-artist-2",
+        "alt-movie-1",
+        "alt-movie-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-07"
+        ],
+        [
+          "book-16"
+        ],
+        [
+          "book-08"
+        ],
+        [
+          "book-01"
+        ],
+        [
+          "book-12"
+        ],
+        [
+          "book-15"
+        ],
+        [
+          "book-04"
+        ],
+        [
+          "book-14"
+        ],
+        [
+          "book-10"
+        ],
+        [
+          "book-02"
+        ],
+        [
+          "book-03"
+        ],
+        [
+          "book-11"
+        ],
+        [
+          "book-09"
+        ],
+        [
+          "book-05"
+        ],
+        [
+          "book-13"
+        ],
+        [
+          "book-06"
+        ]
+      ],
+      "model": "gemini-3.5-flash-lite",
+      "raw_scores": {},
+      "evidence_id": "request-0004"
+    },
+    {
+      "source": "qloo",
+      "profile_id": "profile-alt",
+      "variant": "music_brands",
+      "reference_ids": [
+        "alt-artist-1",
+        "alt-artist-2",
+        "alt-brand-1",
+        "alt-brand-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-16"
+        ],
+        [
+          "book-09"
+        ],
+        [
+          "book-02"
+        ],
+        [
+          "book-11"
+        ],
+        [
+          "book-06"
+        ],
+        [
+          "book-14"
+        ],
+        [
+          "book-08"
+        ],
+        [
+          "book-10"
+        ],
+        [
+          "book-07"
+        ],
+        [
+          "book-15"
+        ],
+        [
+          "book-01"
+        ],
+        [
+          "book-12"
+        ],
+        [
+          "book-04"
+        ],
+        [
+          "book-03"
+        ],
+        [
+          "book-13"
+        ],
+        [
+          "book-05"
+        ]
+      ],
+      "raw_scores": {
+        "book-16": 0.6283401307236418,
+        "book-09": 0.621975315947424,
+        "book-02": 0.5964031058995717,
+        "book-11": 0.5905596917695974,
+        "book-06": 0.5846255208906668,
+        "book-14": 0.5841753336782014,
+        "book-08": 0.5822785817859514,
+        "book-10": 0.5802615481880394,
+        "book-07": 0.5764465638425196,
+        "book-15": 0.5656595803623414,
+        "book-01": 0.5432338746394421,
+        "book-12": 0.5403277206783441,
+        "book-04": 0.5351025182570399,
+        "book-03": 0.5205496217557078,
+        "book-13": 0.5146554243227849,
+        "book-05": 0.4033278849696242
+      },
+      "evidence_id": "request-0005"
+    },
+    {
+      "source": "gemini",
+      "profile_id": "profile-alt",
+      "variant": "music_brands",
+      "reference_ids": [
+        "alt-artist-1",
+        "alt-artist-2",
+        "alt-brand-1",
+        "alt-brand-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-07",
+          "book-16"
+        ],
+        [
+          "book-08",
+          "book-12"
+        ],
+        [
+          "book-04",
+          "book-14"
+        ],
+        [
+          "book-10",
+          "book-15"
+        ],
+        [
+          "book-01",
+          "book-11"
+        ],
+        [
+          "book-02",
+          "book-06"
+        ],
+        [
+          "book-03",
+          "book-05",
+          "book-09",
+          "book-13"
+        ]
+      ],
+      "model": "gemini-3.5-flash-lite",
+      "raw_scores": {},
+      "evidence_id": "request-0006"
+    },
+    {
+      "source": "qloo",
+      "profile_id": "profile-soul",
+      "variant": "music_only",
+      "reference_ids": [
+        "soul-artist-1",
+        "soul-artist-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-03"
+        ],
+        [
+          "book-14"
+        ],
+        [
+          "book-09"
+        ],
+        [
+          "book-07"
+        ],
+        [
+          "book-15"
+        ],
+        [
+          "book-04"
+        ],
+        [
+          "book-10"
+        ],
+        [
+          "book-16"
+        ],
+        [
+          "book-05"
+        ],
+        [
+          "book-11"
+        ],
+        [
+          "book-08"
+        ],
+        [
+          "book-13"
+        ],
+        [
+          "book-02"
+        ],
+        [
+          "book-06"
+        ],
+        [
+          "book-12"
+        ],
+        [
+          "book-01"
+        ]
+      ],
+      "raw_scores": {
+        "book-03": 0.6836282164207853,
+        "book-14": 0.5799982893476006,
+        "book-09": 0.5400776565407375,
+        "book-07": 0.5396816652660986,
+        "book-15": 0.5356882253284242,
+        "book-04": 0.5168246820557569,
+        "book-10": 0.514683468650275,
+        "book-16": 0.48008129707597474,
+        "book-05": 0.4785356385724611,
+        "book-11": 0.4447932264739636,
+        "book-08": 0.44201801374453914,
+        "book-13": 0.4362422189310422,
+        "book-02": 0.4314562050473476,
+        "book-06": 0.4259132238813858,
+        "book-12": 0.42280622614029356,
+        "book-01": 0.4059782704118475
+      },
+      "evidence_id": "request-0007"
+    },
+    {
+      "source": "gemini",
+      "profile_id": "profile-soul",
+      "variant": "music_only",
+      "reference_ids": [
+        "soul-artist-1",
+        "soul-artist-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-03"
+        ],
+        [
+          "book-01",
+          "book-02",
+          "book-04",
+          "book-05",
+          "book-06",
+          "book-07",
+          "book-08",
+          "book-09",
+          "book-10",
+          "book-11",
+          "book-12",
+          "book-13",
+          "book-14",
+          "book-15",
+          "book-16"
+        ]
+      ],
+      "model": "gemini-3.5-flash-lite",
+      "raw_scores": {},
+      "evidence_id": "request-0008"
+    },
+    {
+      "source": "qloo",
+      "profile_id": "profile-soul",
+      "variant": "music_movies",
+      "reference_ids": [
+        "soul-artist-1",
+        "soul-artist-2",
+        "soul-movie-1",
+        "soul-movie-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-03"
+        ],
+        [
+          "book-09"
+        ],
+        [
+          "book-15"
+        ],
+        [
+          "book-07"
+        ],
+        [
+          "book-14"
+        ],
+        [
+          "book-16"
+        ],
+        [
+          "book-10"
+        ],
+        [
+          "book-04"
+        ],
+        [
+          "book-02"
+        ],
+        [
+          "book-08"
+        ],
+        [
+          "book-12"
+        ],
+        [
+          "book-13"
+        ],
+        [
+          "book-06"
+        ],
+        [
+          "book-11"
+        ],
+        [
+          "book-01"
+        ],
+        [
+          "book-05"
+        ]
+      ],
+      "raw_scores": {
+        "book-03": 0.7078725326360903,
+        "book-09": 0.5955314349206726,
+        "book-15": 0.592374972440729,
+        "book-07": 0.5886786231412042,
+        "book-14": 0.5840402405395333,
+        "book-16": 0.5304197577049335,
+        "book-10": 0.518759729700437,
+        "book-04": 0.5006708900327664,
+        "book-02": 0.4908198770589658,
+        "book-08": 0.46899922308816583,
+        "book-12": 0.45788456836424346,
+        "book-13": 0.45475630922213467,
+        "book-06": 0.4505059977657539,
+        "book-11": 0.4348662202411904,
+        "book-01": 0.4325786930565268,
+        "book-05": 0.42810664593584014
+      },
+      "evidence_id": "request-0009"
+    },
+    {
+      "source": "gemini",
+      "profile_id": "profile-soul",
+      "variant": "music_movies",
+      "reference_ids": [
+        "soul-artist-1",
+        "soul-artist-2",
+        "soul-movie-1",
+        "soul-movie-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-03"
+        ],
+        [
+          "book-01",
+          "book-02",
+          "book-04",
+          "book-05",
+          "book-06",
+          "book-07",
+          "book-08",
+          "book-09",
+          "book-10",
+          "book-11",
+          "book-12",
+          "book-13",
+          "book-14",
+          "book-15",
+          "book-16"
+        ]
+      ],
+      "model": "gemini-3.5-flash-lite",
+      "raw_scores": {},
+      "evidence_id": "request-0010"
+    },
+    {
+      "source": "qloo",
+      "profile_id": "profile-soul",
+      "variant": "music_brands",
+      "reference_ids": [
+        "soul-artist-1",
+        "soul-artist-2",
+        "soul-brand-1",
+        "soul-brand-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-03"
+        ],
+        [
+          "book-14"
+        ],
+        [
+          "book-09"
+        ],
+        [
+          "book-07"
+        ],
+        [
+          "book-15"
+        ],
+        [
+          "book-05"
+        ],
+        [
+          "book-10"
+        ],
+        [
+          "book-04"
+        ],
+        [
+          "book-16"
+        ],
+        [
+          "book-02"
+        ],
+        [
+          "book-08"
+        ],
+        [
+          "book-11"
+        ],
+        [
+          "book-06"
+        ],
+        [
+          "book-13"
+        ],
+        [
+          "book-12"
+        ],
+        [
+          "book-01"
+        ]
+      ],
+      "raw_scores": {
+        "book-03": 0.6300213352651942,
+        "book-14": 0.5349352834734397,
+        "book-09": 0.5294942705205241,
+        "book-07": 0.5038989056725298,
+        "book-15": 0.49829110709233854,
+        "book-05": 0.4853233137308985,
+        "book-10": 0.4774570121586349,
+        "book-04": 0.4697505414887616,
+        "book-16": 0.4555416126482864,
+        "book-02": 0.44167593770955554,
+        "book-08": 0.43931535924122284,
+        "book-11": 0.42631884925021396,
+        "book-06": 0.4257102786270025,
+        "book-13": 0.4169017105086283,
+        "book-12": 0.41249077256042027,
+        "book-01": 0.386816280535129
+      },
+      "evidence_id": "request-0011"
+    },
+    {
+      "source": "gemini",
+      "profile_id": "profile-soul",
+      "variant": "music_brands",
+      "reference_ids": [
+        "soul-artist-1",
+        "soul-artist-2",
+        "soul-brand-1",
+        "soul-brand-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-03"
+        ],
+        [
+          "book-01",
+          "book-02",
+          "book-04",
+          "book-05",
+          "book-06",
+          "book-07",
+          "book-08",
+          "book-09",
+          "book-10",
+          "book-11",
+          "book-12",
+          "book-13",
+          "book-14",
+          "book-15",
+          "book-16"
+        ]
+      ],
+      "model": "gemini-3.5-flash-lite",
+      "raw_scores": {},
+      "evidence_id": "request-0012"
+    },
+    {
+      "source": "qloo",
+      "profile_id": "profile-electronic",
+      "variant": "music_only",
+      "reference_ids": [
+        "electronic-artist-1",
+        "electronic-artist-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-12"
+        ],
+        [
+          "book-09"
+        ],
+        [
+          "book-08"
+        ],
+        [
+          "book-01"
+        ],
+        [
+          "book-10"
+        ],
+        [
+          "book-07"
+        ],
+        [
+          "book-02"
+        ],
+        [
+          "book-06"
+        ],
+        [
+          "book-16"
+        ],
+        [
+          "book-03"
+        ],
+        [
+          "book-13"
+        ],
+        [
+          "book-15"
+        ],
+        [
+          "book-14"
+        ],
+        [
+          "book-11"
+        ],
+        [
+          "book-04"
+        ],
+        [
+          "book-05"
+        ]
+      ],
+      "raw_scores": {
+        "book-12": 0.9216502384012193,
+        "book-09": 0.8875328614434127,
+        "book-08": 0.8801647359754916,
+        "book-01": 0.8584323423680422,
+        "book-10": 0.8454882164348186,
+        "book-07": 0.8258191187556898,
+        "book-02": 0.820416677243451,
+        "book-06": 0.8168364447264574,
+        "book-16": 0.7622114536439405,
+        "book-03": 0.7608129940301739,
+        "book-13": 0.7559930705225472,
+        "book-15": 0.7486538648230507,
+        "book-14": 0.7445515570094056,
+        "book-11": 0.7286196849619037,
+        "book-04": 0.7132932581533993,
+        "book-05": 0.46017040732700143
+      },
+      "evidence_id": "request-0013"
+    },
+    {
+      "source": "gemini",
+      "profile_id": "profile-electronic",
+      "variant": "music_only",
+      "reference_ids": [
+        "electronic-artist-1",
+        "electronic-artist-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-02"
+        ],
+        [
+          "book-04",
+          "book-14"
+        ],
+        [
+          "book-01",
+          "book-10"
+        ],
+        [
+          "book-07",
+          "book-16"
+        ],
+        [
+          "book-08",
+          "book-12"
+        ],
+        [
+          "book-11"
+        ],
+        [
+          "book-03",
+          "book-05",
+          "book-06",
+          "book-09",
+          "book-13",
+          "book-15"
+        ]
+      ],
+      "model": "gemini-3.5-flash-lite",
+      "raw_scores": {},
+      "evidence_id": "request-0014"
+    },
+    {
+      "source": "qloo",
+      "profile_id": "profile-electronic",
+      "variant": "music_movies",
+      "reference_ids": [
+        "electronic-artist-1",
+        "electronic-artist-2",
+        "electronic-movie-1",
+        "electronic-movie-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-12"
+        ],
+        [
+          "book-06"
+        ],
+        [
+          "book-01"
+        ],
+        [
+          "book-08"
+        ],
+        [
+          "book-02"
+        ],
+        [
+          "book-09"
+        ],
+        [
+          "book-10"
+        ],
+        [
+          "book-07"
+        ],
+        [
+          "book-14"
+        ],
+        [
+          "book-16"
+        ],
+        [
+          "book-11"
+        ],
+        [
+          "book-04"
+        ],
+        [
+          "book-13"
+        ],
+        [
+          "book-15"
+        ],
+        [
+          "book-03"
+        ],
+        [
+          "book-05"
+        ]
+      ],
+      "raw_scores": {
+        "book-12": 0.862433313679308,
+        "book-06": 0.8493355645135015,
+        "book-01": 0.8487043445695487,
+        "book-08": 0.8482278290334443,
+        "book-02": 0.8410584659132757,
+        "book-09": 0.8378309892859852,
+        "book-10": 0.8150998678497063,
+        "book-07": 0.7831376036096263,
+        "book-14": 0.7628171692649662,
+        "book-16": 0.7400257507246185,
+        "book-11": 0.7314937058011538,
+        "book-04": 0.7204893366496322,
+        "book-13": 0.7141119943859605,
+        "book-15": 0.7128967281668764,
+        "book-03": 0.7074572928341055,
+        "book-05": 0.4839650961149859
+      },
+      "evidence_id": "request-0015"
+    },
+    {
+      "source": "gemini",
+      "profile_id": "profile-electronic",
+      "variant": "music_movies",
+      "reference_ids": [
+        "electronic-artist-1",
+        "electronic-artist-2",
+        "electronic-movie-1",
+        "electronic-movie-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-02"
+        ],
+        [
+          "book-04"
+        ],
+        [
+          "book-14"
+        ],
+        [
+          "book-01"
+        ],
+        [
+          "book-10"
+        ],
+        [
+          "book-12"
+        ],
+        [
+          "book-07"
+        ],
+        [
+          "book-11"
+        ],
+        [
+          "book-08"
+        ],
+        [
+          "book-15"
+        ],
+        [
+          "book-06"
+        ],
+        [
+          "book-03"
+        ],
+        [
+          "book-05"
+        ],
+        [
+          "book-09"
+        ],
+        [
+          "book-13"
+        ],
+        [
+          "book-16"
+        ]
+      ],
+      "model": "gemini-3.5-flash-lite",
+      "raw_scores": {},
+      "evidence_id": "request-0016"
+    },
+    {
+      "source": "qloo",
+      "profile_id": "profile-electronic",
+      "variant": "music_brands",
+      "reference_ids": [
+        "electronic-artist-1",
+        "electronic-artist-2",
+        "electronic-brand-1"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-12"
+        ],
+        [
+          "book-09"
+        ],
+        [
+          "book-08"
+        ],
+        [
+          "book-02"
+        ],
+        [
+          "book-01"
+        ],
+        [
+          "book-10"
+        ],
+        [
+          "book-07"
+        ],
+        [
+          "book-06"
+        ],
+        [
+          "book-16"
+        ],
+        [
+          "book-03"
+        ],
+        [
+          "book-15"
+        ],
+        [
+          "book-13"
+        ],
+        [
+          "book-11"
+        ],
+        [
+          "book-14"
+        ],
+        [
+          "book-04"
+        ],
+        [
+          "book-05"
+        ]
+      ],
+      "raw_scores": {
+        "book-12": 0.8982283228981315,
+        "book-09": 0.8770383477340041,
+        "book-08": 0.8235700635855976,
+        "book-02": 0.7953888526506738,
+        "book-01": 0.7843799042927392,
+        "book-10": 0.7698372062348008,
+        "book-07": 0.7656143920670476,
+        "book-06": 0.754790387116235,
+        "book-16": 0.7284017090961977,
+        "book-03": 0.7240246362549356,
+        "book-15": 0.7075530489765924,
+        "book-13": 0.7056555310040358,
+        "book-11": 0.7053547178936007,
+        "book-14": 0.6961331534532494,
+        "book-04": 0.6387089473373908,
+        "book-05": 0.45801150389379736
+      },
+      "evidence_id": "request-0017"
+    },
+    {
+      "source": "gemini",
+      "profile_id": "profile-electronic",
+      "variant": "music_brands",
+      "reference_ids": [
+        "electronic-artist-1",
+        "electronic-artist-2",
+        "electronic-brand-1"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-02"
+        ],
+        [
+          "book-04"
+        ],
+        [
+          "book-14"
+        ],
+        [
+          "book-06"
+        ],
+        [
+          "book-01"
+        ],
+        [
+          "book-03"
+        ],
+        [
+          "book-05"
+        ],
+        [
+          "book-07"
+        ],
+        [
+          "book-08"
+        ],
+        [
+          "book-09"
+        ],
+        [
+          "book-10"
+        ],
+        [
+          "book-11"
+        ],
+        [
+          "book-12"
+        ],
+        [
+          "book-13"
+        ],
+        [
+          "book-15"
+        ],
+        [
+          "book-16"
+        ]
+      ],
+      "model": "gemini-3.5-flash-lite",
+      "raw_scores": {},
+      "evidence_id": "request-0018"
+    },
+    {
+      "source": "qloo",
+      "profile_id": "profile-roots",
+      "variant": "music_only",
+      "reference_ids": [
+        "roots-artist-1",
+        "roots-artist-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-03"
+        ],
+        [
+          "book-14"
+        ],
+        [
+          "book-09"
+        ],
+        [
+          "book-10"
+        ],
+        [
+          "book-07"
+        ],
+        [
+          "book-15"
+        ],
+        [
+          "book-04"
+        ],
+        [
+          "book-02"
+        ],
+        [
+          "book-16"
+        ],
+        [
+          "book-05"
+        ],
+        [
+          "book-12"
+        ],
+        [
+          "book-06"
+        ],
+        [
+          "book-08"
+        ],
+        [
+          "book-13"
+        ],
+        [
+          "book-01"
+        ],
+        [
+          "book-11"
+        ]
+      ],
+      "raw_scores": {
+        "book-03": 0.6855360311679947,
+        "book-14": 0.6151391706513001,
+        "book-09": 0.5570722296325943,
+        "book-10": 0.5526209616454887,
+        "book-07": 0.5508058516261395,
+        "book-15": 0.5480273539208971,
+        "book-04": 0.5448715922513119,
+        "book-02": 0.5408843782028488,
+        "book-16": 0.5255665422195704,
+        "book-05": 0.5253738375861375,
+        "book-12": 0.5144811976421035,
+        "book-06": 0.5054034730432915,
+        "book-08": 0.49564389470848785,
+        "book-13": 0.49158108861079003,
+        "book-01": 0.4590842837874557,
+        "book-11": 0.43294718396737425
+      },
+      "evidence_id": "request-0019"
+    },
+    {
+      "source": "gemini",
+      "profile_id": "profile-roots",
+      "variant": "music_only",
+      "reference_ids": [
+        "roots-artist-1",
+        "roots-artist-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-03"
+        ],
+        [
+          "book-01",
+          "book-05",
+          "book-10",
+          "book-13"
+        ],
+        [
+          "book-04",
+          "book-14"
+        ],
+        [
+          "book-02",
+          "book-06",
+          "book-07",
+          "book-08",
+          "book-09",
+          "book-11",
+          "book-12",
+          "book-15",
+          "book-16"
+        ]
+      ],
+      "model": "gemini-3.5-flash-lite",
+      "raw_scores": {},
+      "evidence_id": "request-0020"
+    },
+    {
+      "source": "qloo",
+      "profile_id": "profile-roots",
+      "variant": "music_movies",
+      "reference_ids": [
+        "roots-artist-1",
+        "roots-artist-2",
+        "roots-movie-1",
+        "roots-movie-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-03"
+        ],
+        [
+          "book-07"
+        ],
+        [
+          "book-15"
+        ],
+        [
+          "book-09"
+        ],
+        [
+          "book-10"
+        ],
+        [
+          "book-12"
+        ],
+        [
+          "book-16"
+        ],
+        [
+          "book-14"
+        ],
+        [
+          "book-02"
+        ],
+        [
+          "book-08"
+        ],
+        [
+          "book-01"
+        ],
+        [
+          "book-13"
+        ],
+        [
+          "book-04"
+        ],
+        [
+          "book-06"
+        ],
+        [
+          "book-11"
+        ],
+        [
+          "book-05"
+        ]
+      ],
+      "raw_scores": {
+        "book-03": 0.815542085650575,
+        "book-07": 0.7931975291919159,
+        "book-15": 0.7844098318610303,
+        "book-09": 0.7762792721422288,
+        "book-10": 0.7579257293356451,
+        "book-12": 0.7239251318013437,
+        "book-16": 0.7125653652804502,
+        "book-14": 0.7118875844407824,
+        "book-02": 0.6997328106320535,
+        "book-08": 0.688019159736023,
+        "book-01": 0.6744555915434477,
+        "book-13": 0.6621804957701448,
+        "book-04": 0.650754694020737,
+        "book-06": 0.644029944981066,
+        "book-11": 0.5775826371204655,
+        "book-05": 0.49501369646880555
+      },
+      "evidence_id": "request-0021"
+    },
+    {
+      "source": "gemini",
+      "profile_id": "profile-roots",
+      "variant": "music_movies",
+      "reference_ids": [
+        "roots-artist-1",
+        "roots-artist-2",
+        "roots-movie-1",
+        "roots-movie-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-13"
+        ],
+        [
+          "book-05"
+        ],
+        [
+          "book-03"
+        ],
+        [
+          "book-10"
+        ],
+        [
+          "book-12"
+        ],
+        [
+          "book-09"
+        ],
+        [
+          "book-01"
+        ],
+        [
+          "book-04"
+        ],
+        [
+          "book-14"
+        ],
+        [
+          "book-02"
+        ],
+        [
+          "book-06"
+        ],
+        [
+          "book-07"
+        ],
+        [
+          "book-16"
+        ],
+        [
+          "book-08"
+        ],
+        [
+          "book-11"
+        ],
+        [
+          "book-15"
+        ]
+      ],
+      "model": "gemini-3.5-flash-lite",
+      "raw_scores": {},
+      "evidence_id": "request-0022"
+    },
+    {
+      "source": "qloo",
+      "profile_id": "profile-roots",
+      "variant": "music_brands",
+      "reference_ids": [
+        "roots-artist-1",
+        "roots-artist-2",
+        "roots-brand-1",
+        "roots-brand-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-03"
+        ],
+        [
+          "book-14"
+        ],
+        [
+          "book-02"
+        ],
+        [
+          "book-09"
+        ],
+        [
+          "book-12"
+        ],
+        [
+          "book-15"
+        ],
+        [
+          "book-16"
+        ],
+        [
+          "book-05"
+        ],
+        [
+          "book-04"
+        ],
+        [
+          "book-07"
+        ],
+        [
+          "book-11"
+        ],
+        [
+          "book-10"
+        ],
+        [
+          "book-08"
+        ],
+        [
+          "book-06"
+        ],
+        [
+          "book-13"
+        ],
+        [
+          "book-01"
+        ]
+      ],
+      "raw_scores": {
+        "book-03": 0.6137031271837391,
+        "book-14": 0.598616173026746,
+        "book-02": 0.572249280794573,
+        "book-09": 0.5458625141176039,
+        "book-12": 0.5399755341776449,
+        "book-15": 0.538233573591762,
+        "book-16": 0.5238100903280029,
+        "book-05": 0.517187929636488,
+        "book-04": 0.5170527785965325,
+        "book-07": 0.5148743420323446,
+        "book-11": 0.50907529651533,
+        "book-10": 0.5048535166200527,
+        "book-08": 0.48203457659369386,
+        "book-06": 0.47649709383808847,
+        "book-13": 0.438614043384297,
+        "book-01": 0.4257640753774399
+      },
+      "evidence_id": "request-0023"
+    },
+    {
+      "source": "gemini",
+      "profile_id": "profile-roots",
+      "variant": "music_brands",
+      "reference_ids": [
+        "roots-artist-1",
+        "roots-artist-2",
+        "roots-brand-1",
+        "roots-brand-2"
+      ],
+      "pool_ids": [
+        "book-01",
+        "book-02",
+        "book-03",
+        "book-04",
+        "book-05",
+        "book-06",
+        "book-07",
+        "book-08",
+        "book-09",
+        "book-10",
+        "book-11",
+        "book-12",
+        "book-13",
+        "book-14",
+        "book-15",
+        "book-16"
+      ],
+      "groups": [
+        [
+          "book-12"
+        ],
+        [
+          "book-02",
+          "book-04",
+          "book-06",
+          "book-14"
+        ],
+        [
+          "book-01",
+          "book-03",
+          "book-05",
+          "book-07",
+          "book-08",
+          "book-09",
+          "book-10",
+          "book-11",
+          "book-13",
+          "book-15",
+          "book-16"
+        ]
+      ],
+      "model": "gemini-3.5-flash-lite",
+      "raw_scores": {},
+      "evidence_id": "request-0024"
+    }
+  ]
+}

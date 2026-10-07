@@ -1,0 +1,1018 @@
+{
+  "scenario": "Fictional ownership and offers; actual captured Qloo request/response.",
+  "source_evidence_id": "request-0001",
+  "captured_at": "2026-10-07T08:58:03.562236+00:00",
+  "request": {
+    "method": "GET",
+    "url": "https://hackathon.api.qloo.com/v2/insights?filter.type=urn%3Aentity%3Abook&signal.interests.entities=70CAE5BF-2F4C-445C-A3E5-4EDACFC3591C%2C045707A1-C8EF-443F-A882-1B97AC69DC9A&filter.results.entities=0E5EEC3E-C08F-4871-B379-29069C19D404%2C9BA85467-2189-46DC-BB98-4B25EE182A9D%2C8B7B61C3-BF4D-4B18-A443-13DB229DC913%2C4D73C871-CC0F-4FC8-88CD-7C59B26E087E%2CFB39AE3C-D31A-4677-8E07-3D0A42EB67B2%2C881D224A-C331-4B87-975B-8FA0546391D3%2C3ADBB2A8-6788-4CD9-93C4-417CAF2C789B%2C5373FA79-91A0-478D-96B3-B5B78ABF84CA%2C6A4CF4C4-B833-44E1-A426-BB312130C9F3%2C2E76F365-7C08-4DDF-8C49-CC27582788E5%2CEB337B84-0450-49B0-98CE-11838BBFDE1E%2CB248BC9F-15C3-424F-AC89-DDBC1D94915A%2CAB552CDE-3953-417D-8DC4-7CAA7333C7DF%2CC75EA743-C08D-4DBF-B456-AC6B71AC14AC%2C4862C8C1-0412-4042-BF3E-D56DEAFEF854%2C6D14517A-4A91-4CAF-97EE-318377F6D27B&take=50",
+    "authentication": "REMOVED"
+  },
+  "references": [
+    {
+      "id": "alt-artist-1",
+      "name": "Radiohead",
+      "type": "artist",
+      "qloo_id": "70CAE5BF-2F4C-445C-A3E5-4EDACFC3591C",
+      "confirmed": true
+    },
+    {
+      "id": "alt-artist-2",
+      "name": "Portishead",
+      "type": "artist",
+      "qloo_id": "045707A1-C8EF-443F-A882-1B97AC69DC9A",
+      "confirmed": true
+    }
+  ],
+  "confirmed_candidate_pool": [
+    {
+      "id": "book-01",
+      "qloo_id": "0E5EEC3E-C08F-4871-B379-29069C19D404",
+      "name": "Frankenstein",
+      "author": "Mary Shelley"
+    },
+    {
+      "id": "book-02",
+      "qloo_id": "9BA85467-2189-46DC-BB98-4B25EE182A9D",
+      "name": "Dune",
+      "author": "Frank Herbert"
+    },
+    {
+      "id": "book-03",
+      "qloo_id": "8B7B61C3-BF4D-4B18-A443-13DB229DC913",
+      "name": "Beloved",
+      "author": "Toni Morrison"
+    },
+    {
+      "id": "book-04",
+      "qloo_id": "4D73C871-CC0F-4FC8-88CD-7C59B26E087E",
+      "name": "The Left Hand of Darkness",
+      "author": "Ursula K. Le Guin"
+    },
+    {
+      "id": "book-05",
+      "qloo_id": "FB39AE3C-D31A-4677-8E07-3D0A42EB67B2",
+      "name": "Pride and Prejudice",
+      "author": "Jane Austen"
+    },
+    {
+      "id": "book-06",
+      "qloo_id": "881D224A-C331-4B87-975B-8FA0546391D3",
+      "name": "The Hobbit",
+      "author": "J. R. R. Tolkien"
+    },
+    {
+      "id": "book-07",
+      "qloo_id": "3ADBB2A8-6788-4CD9-93C4-417CAF2C789B",
+      "name": "Never Let Me Go",
+      "author": "Kazuo Ishiguro"
+    },
+    {
+      "id": "book-08",
+      "qloo_id": "5373FA79-91A0-478D-96B3-B5B78ABF84CA",
+      "name": "The Stranger",
+      "author": "Albert Camus"
+    },
+    {
+      "id": "book-09",
+      "qloo_id": "6A4CF4C4-B833-44E1-A426-BB312130C9F3",
+      "name": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald"
+    },
+    {
+      "id": "book-10",
+      "qloo_id": "2E76F365-7C08-4DDF-8C49-CC27582788E5",
+      "name": "The Handmaid's Tale",
+      "author": "Margaret Atwood"
+    },
+    {
+      "id": "book-11",
+      "qloo_id": "EB337B84-0450-49B0-98CE-11838BBFDE1E",
+      "name": "The Name of the Rose",
+      "author": "Umberto Eco"
+    },
+    {
+      "id": "book-12",
+      "qloo_id": "B248BC9F-15C3-424F-AC89-DDBC1D94915A",
+      "name": "The Road",
+      "author": "Cormac McCarthy"
+    },
+    {
+      "id": "book-13",
+      "qloo_id": "AB552CDE-3953-417D-8DC4-7CAA7333C7DF",
+      "name": "Jane Eyre",
+      "author": "Charlotte Bronte"
+    },
+    {
+      "id": "book-14",
+      "qloo_id": "C75EA743-C08D-4DBF-B456-AC6B71AC14AC",
+      "name": "The Dispossessed",
+      "author": "Ursula K. Le Guin"
+    },
+    {
+      "id": "book-15",
+      "qloo_id": "4862C8C1-0412-4042-BF3E-D56DEAFEF854",
+      "name": "The Secret History",
+      "author": "Donna Tartt"
+    },
+    {
+      "id": "book-16",
+      "qloo_id": "6D14517A-4A91-4CAF-97EE-318377F6D27B",
+      "name": "The Remains of the Day",
+      "author": "Kazuo Ishiguro"
+    }
+  ],
+  "response_excerpt": [
+    {
+      "entity_id": "6A4CF4C4-B833-44E1-A426-BB312130C9F3",
+      "name": "The Great Gatsby",
+      "type": "urn:entity",
+      "subtype": "urn:entity:book",
+      "popularity": 0.999874199295516,
+      "tags": [
+        {
+          "id": "urn:tag:genre:media:read_school",
+          "name": "Read For School",
+          "type": "urn:tag:genre:media"
+        },
+        {
+          "id": "urn:tag:genre:media:romance",
+          "name": "Romance",
+          "type": "urn:tag:genre:media"
+        },
+        {
+          "id": "urn:tag:genre:media:literature",
+          "name": "Literature",
+          "type": "urn:tag:genre:media"
+        },
+        {
+          "id": "urn:tag:genre:media:novels",
+          "name": "Novels",
+          "type": "urn:tag:genre:media"
+        },
+        {
+          "id": "urn:tag:genre:media:historical_fiction",
+          "name": "Historical Fiction",
+          "type": "urn:tag:genre:media"
+        },
+        {
+          "id": "urn:tag:genre:media:fiction",
+          "name": "Fiction",
+          "type": "urn:tag:genre:media"
+        },
+        {
+          "id": "urn:tag:genre:media:american",
+          "name": "American",
+          "type": "urn:tag:genre:media"
+        },
+        {
+          "id": "urn:tag:genre:media:high_school",
+          "name": "High School",
+          "type": "urn:tag:genre:media"
+        },
+        {
+          "id": "urn:tag:genre:media:historical",
+          "name": "Historical",
+          "type": "urn:tag:genre:media"
+        },
+        {
+          "id": "urn:tag:genre:media:school",
+          "name": "School",
+          "type": "urn:tag:genre:media"
+        },
+        {
+          "id": "urn:tag:age_ranges:qloo:18_24",
+          "name": "18-24",
+          "type": "urn:tag:age_ranges:qloo"
+        },
+        {
+          "id": "urn:tag:age_ranges:qloo:25_29",
+          "name": "25-29",
+          "type": "urn:tag:age_ranges:qloo"
+        },
+        {
+          "id": "urn:tag:age_ranges:qloo:30_34",
+          "name": "30-34",
+          "type": "urn:tag:age_ranges:qloo"
+        },
+        {
+          "id": "urn:tag:age_ranges:qloo:35_44",
+          "name": "35-44",
+          "type": "urn:tag:age_ranges:qloo"
+        },
+        {
+          "id": "urn:tag:age_ranges:qloo:45_54",
+          "name": "45-54",
+          "type": "urn:tag:age_ranges:qloo"
+        },
+        {
+          "id": "urn:tag:age_ranges:qloo:55_",
+          "name": "55+",
+          "type": "urn:tag:age_ranges:qloo"
+        },
+        {
+          "id": "urn:tag:critical_descriptor:qloo:mystical",
+          "name": "mystical",
+          "type": "urn:tag:critical_descriptor:qloo"
+        },
+        {
+          "id": "urn:tag:critical_descriptor:qloo:glamorous",
+          "name": "glamorous",
+          "type": "urn:tag:critical_descriptor:qloo"
+        },
+        {
+          "id": "urn:tag:critical_descriptor:qloo:revelatory",
+          "name": "revelatory",
+          "type": "urn:tag:critical_descriptor:qloo"
+        },
+        {
+          "id": "urn:tag:critical_descriptor:qloo:scintillating",
+          "name": "scintillating",
+          "type": "urn:tag:critical_descriptor:qloo"
+        },
+        {
+          "id": "urn:tag:critical_descriptor:qloo:brilliant",
+          "name": "brilliant",
+          "type": "urn:tag:critical_descriptor:qloo"
+        },
+        {
+          "id": "urn:tag:book_format:qloo:hardcover",
+          "name": "Hardcover",
+          "type": "urn:tag:book_format:qloo"
+        },
+        {
+          "id": "urn:tag:book_format:qloo:paperback",
+          "name": "Paperback",
+          "type": "urn:tag:book_format:qloo"
+        },
+        {
+          "id": "urn:tag:book_format:qloo:ebook",
+          "name": "Ebook",
+          "type": "urn:tag:book_format:qloo"
+        },
+        {
+          "id": "urn:tag:genre:qloo:tragedy",
+          "name": "Tragedy",
+          "type": "urn:tag:genre:qloo"
+        },
+        {
+          "id": "urn:tag:keyword:qloo:jazz_age",
+          "name": "Jazz Age",
+          "type": "urn:tag:keyword:qloo"
+        },
+        {
+          "id": "urn:tag:keyword:qloo:wealth",
+          "name": "Wealth",
+          "type": "urn:tag:keyword:qloo"
+        },
+        {
+          "id": "urn:tag:keyword:qloo:love",
+          "name": "Love",
+          "type": "urn:tag:keyword:qloo"
+        },
+        {
+          "id": "urn:tag:keyword:qloo:american_dream",
+          "name": "American Dream",
+          "type": "urn:tag:keyword:qloo"
+        },
+        {
+          "id": "urn:tag:keyword:qloo:long_island",
+          "name": "Long Island",
+          "type": "urn:tag:keyword:qloo"
+        },
+        {
+          "id": "urn:tag:keyword:qloo:parties",
+          "name": "Parties",
+          "type": "urn:tag:keyword:qloo"
+        },
+        {
+          "id": "urn:tag:keyword:qloo:class",
+          "name": "Class",
+          "type": "urn:tag:keyword:qloo"
+        },
+        {
+          "id": "urn:tag:keyword:qloo:obsession",
+          "name": "Obsession",
+          "type": "urn:tag:keyword:qloo"
+        },
+        {
+          "id": "urn:tag:keyword:qloo:tragedy",
+          "name": "Tragedy",
+          "type": "urn:tag:keyword:qloo"
+        },
+        {
+          "id": "urn:tag:media_type:qloo:print",
+          "name": "Print",
+          "type": "urn:tag:media_type:qloo"
+        },
+        {
+          "id": "urn:tag:media_type:qloo:digital",
+          "name": "Digital",
+          "type": "urn:tag:media_type:qloo"
+        },
+        {
+          "id": "urn:tag:media_type:qloo:audio",
+          "name": "Audio",
+          "type": "urn:tag:media_type:qloo"
+        },
+        {
+          "id": "urn:tag:narrative:qloo:first_person",
+          "name": "first person",
+          "type": "urn:tag:narrative:qloo"
+        },
+        {
+          "id": "urn:tag:character:qloo:tragic",
+          "name": "Tragic",
+          "type": "urn:tag:character:qloo"
+        },
+        {
+          "id": "urn:tag:character:qloo:romantic",
+          "name": "Romantic",
+          "type": "urn:tag:character:qloo"
+        },
+        {
+          "id": "urn:tag:character:qloo:symbolic",
+          "name": "Symbolic",
+          "type": "urn:tag:character:qloo"
+        },
+        {
+          "id": "urn:tag:character:qloo:cynical",
+          "name": "Cynical",
+          "type": "urn:tag:character:qloo"
+        },
+        {
+          "id": "urn:tag:character:qloo:dramatic",
+          "name": "Dramatic",
+          "type": "urn:tag:character:qloo"
+        },
+        {
+          "id": "urn:tag:theme:qloo:wealth",
+          "name": "Wealth",
+          "type": "urn:tag:theme:qloo"
+        },
+        {
+          "id": "urn:tag:theme:qloo:class",
+          "name": "Class",
+          "type": "urn:tag:theme:qloo"
+        },
+        {
+          "id": "urn:tag:theme:qloo:love",
+          "name": "Love",
+          "type": "urn:tag:theme:qloo"
+        },
+        {
+          "id": "urn:tag:theme:qloo:american_dream",
+          "name": "American Dream",
+          "type": "urn:tag:theme:qloo"
+        },
+        {
+          "id": "urn:tag:theme:qloo:obsession",
+          "name": "Obsession",
+          "type": "urn:tag:theme:qloo"
+        },
+        {
+          "id": "urn:tag:setting:qloo:long_island_new_york_united_states",
+          "name": "Long Island, New York, United States",
+          "type": "urn:tag:setting:qloo"
+        },
+        {
+          "id": "urn:tag:motif:qloo:green_light",
+          "name": "Green Light",
+          "type": "urn:tag:motif:qloo"
+        },
+        {
+          "id": "urn:tag:motif:qloo:eyes_of_dr_t_j_eckleburg",
+          "name": "Eyes of Dr. T.J. Eckleburg",
+          "type": "urn:tag:motif:qloo"
+        },
+        {
+          "id": "urn:tag:motif:qloo:parties",
+          "name": "Parties",
+          "type": "urn:tag:motif:qloo"
+        },
+        {
+          "id": "urn:tag:motif:qloo:cars",
+          "name": "Cars",
+          "type": "urn:tag:motif:qloo"
+        },
+        {
+          "id": "urn:tag:subgenre:qloo:historical_fiction",
+          "name": "Historical Fiction",
+          "type": "urn:tag:subgenre:qloo"
+        },
+        {
+          "id": "urn:tag:subgenre:qloo:romance",
+          "name": "Romance",
+          "type": "urn:tag:subgenre:qloo"
+        },
+        {
+          "id": "urn:tag:time_period:qloo:1920s",
+          "name": "1920s",
+          "type": "urn:tag:time_period:qloo"
+        },
+        {
+          "id": "urn:tag:style:qloo:lyrical",
+          "name": "Lyrical",
+          "type": "urn:tag:style:qloo"
+        },
+        {
+          "id": "urn:tag:style:qloo:symbolic",
+          "name": "Symbolic",
+          "type": "urn:tag:style:qloo"
+        },
+        {
+          "id": "urn:tag:style:qloo:cynical",
+          "name": "Cynical",
+          "type": "urn:tag:style:qloo"
+        },
+        {
+          "id": "urn:tag:style:qloo:evocative",
+          "name": "Evocative",
+          "type": "urn:tag:style:qloo"
+        },
+        {
+          "id": "urn:tag:style:qloo:timeless",
+          "name": "Timeless",
+          "type": "urn:tag:style:qloo"
+        },
+        {
+          "id": "urn:tag:viewer_characteristic:qloo:intellectual",
+          "name": "Intellectual",
+          "type": "urn:tag:viewer_characteristic:qloo"
+        },
+        {
+          "id": "urn:tag:viewer_characteristic:qloo:reflective",
+          "name": "Reflective",
+          "type": "urn:tag:viewer_characteristic:qloo"
+        },
+        {
+          "id": "urn:tag:viewer_characteristic:qloo:cynical",
+          "name": "Cynical",
+          "type": "urn:tag:viewer_characteristic:qloo"
+        },
+        {
+          "id": "urn:tag:viewer_characteristic:qloo:romantic",
+          "name": "Romantic",
+          "type": "urn:tag:viewer_characteristic:qloo"
+        },
+        {
+          "id": "urn:tag:viewer_characteristic:qloo:historically_minded",
+          "name": "Historically-minded",
+          "type": "urn:tag:viewer_characteristic:qloo"
+        }
+      ],
+      "external": {
+        "goodreads": [
+          {
+            "id": "41733839",
+            "user_rating": 3.93,
+            "user_ratings_count": 5611889
+          }
+        ]
+      },
+      "properties": {
+        "description": "Alternate covers of this ISBN can be found here and here.  James L.W. West III to include the author’s final revisions and features a note on the composition and text, a personal foreword by Fitzgerald’s granddaughter, Eleanor Lanahan—and a new introduction by two-time National Book Award winner Jesmyn Ward.  The Great Gatsby, F. Scott Fitzgerald’s third book, stands as the supreme achievement of his career. First published in 1925, this quintessential novel of the Jazz Age has been acclaimed by generations of readers. The story of the mysteriously wealthy Jay Gatsby and his love for the beautiful Daisy Buchanan, of lavish parties on Long Island at a time when The New York Times noted “gin was the national drink and sex the national obsession,” it is an exquisitely crafted tale of America in the 1920s.",
+        "format": "Paperback",
+        "isbn10": "0743273567",
+        "isbn13": "9780743273565",
+        "language": "English",
+        "page_count": 180,
+        "publication_date": "1925-04-10",
+        "publication_year": 1925,
+        "publisher": "Scribner",
+        "title": "The Great Gatsby",
+        "image": {
+          "url": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1650033243i/41733839.jpg"
+        },
+        "akas": [
+          {
+            "value": "Der große Gatsby",
+            "languages": [
+              "de"
+            ]
+          },
+          {
+            "value": "El gran Gatsby",
+            "languages": [
+              "es"
+            ]
+          },
+          {
+            "value": "Gatsby le Magnifique",
+            "languages": [
+              "fr"
+            ]
+          }
+        ],
+        "short_descriptions": [
+          {
+            "value": "Nick Carraway gerät in das tragische Leben seines reichen Nachbarn Jay Gatsby, der besessen davon ist, Daisy Buchanan zurückzugewinnen.",
+            "languages": [
+              "de"
+            ]
+          },
+          {
+            "value": "Nick Carraway se ve envuelto en la trágica vida de su rico vecino Jay Gatsby, obsesionado con recuperar su amor con Daisy Buchanan.",
+            "languages": [
+              "es"
+            ]
+          },
+          {
+            "value": "Nick Carraway se retrouve mêlé à la vie tragique de son riche voisin Jay Gatsby, obsédé par l'idée de reconquérir Daisy Buchanan.",
+            "languages": [
+              "fr"
+            ]
+          }
+        ],
+        "short_description": "Nick Carraway becomes entangled in the tragic life of his wealthy neighbor, Jay Gatsby, who is obsessed with rekindling his romance with Daisy Buchanan."
+      },
+      "disambiguation": "1925, F. Scott Fitzgerald",
+      "query": {
+        "affinity": 0.7103540535204237
+      }
+    },
+    {
+      "entity_id": "6D14517A-4A91-4CAF-97EE-318377F6D27B",
+      "name": "The Remains of the Day",
+      "type": "urn:entity",
+      "subtype": "urn:entity:book",
+      "popularity": 0.9983577908036285,
+      "tags": [
+        {
+          "id": "urn:tag:genre:media:novels",
+          "name": "Novels",
+          "type": "urn:tag:genre:media"
+        },
+        {
+          "id": "urn:tag:genre:media:fiction",
+          "name": "Fiction",
+          "type": "urn:tag:genre:media"
+        },
+        {
+          "id": "urn:tag:genre:media:historical",
+          "name": "Historical",
+          "type": "urn:tag:genre:media"
+        },
+        {
+          "id": "urn:tag:genre:media:british_literature",
+          "name": "British Literature",
+          "type": "urn:tag:genre:media"
+        },
+        {
+          "id": "urn:tag:genre:media:historical_fiction",
+          "name": "Historical Fiction",
+          "type": "urn:tag:genre:media"
+        },
+        {
+          "id": "urn:tag:genre:media:literary_fiction",
+          "name": "Literary Fiction",
+          "type": "urn:tag:genre:media"
+        },
+        {
+          "id": "urn:tag:genre:media:classics",
+          "name": "Classics",
+          "type": "urn:tag:genre:media"
+        },
+        {
+          "id": "urn:tag:genre:media:literature",
+          "name": "Literature",
+          "type": "urn:tag:genre:media"
+        },
+        {
+          "id": "urn:tag:genre:media:audiobook",
+          "name": "Audiobook",
+          "type": "urn:tag:genre:media"
+        },
+        {
+          "id": "urn:tag:genre:media:20th_century",
+          "name": "20th Century",
+          "type": "urn:tag:genre:media"
+        },
+        {
+          "id": "urn:tag:age_ranges:qloo:18_24",
+          "name": "18-24",
+          "type": "urn:tag:age_ranges:qloo"
+        },
+        {
+          "id": "urn:tag:age_ranges:qloo:25_29",
+          "name": "25-29",
+          "type": "urn:tag:age_ranges:qloo"
+        },
+        {
+          "id": "urn:tag:age_ranges:qloo:30_34",
+          "name": "30-34",
+          "type": "urn:tag:age_ranges:qloo"
+        },
+        {
+          "id": "urn:tag:age_ranges:qloo:35_44",
+          "name": "35-44",
+          "type": "urn:tag:age_ranges:qloo"
+        },
+        {
+          "id": "urn:tag:age_ranges:qloo:45_54",
+          "name": "45-54",
+          "type": "urn:tag:age_ranges:qloo"
+        },
+        {
+          "id": "urn:tag:age_ranges:qloo:55_",
+          "name": "55+",
+          "type": "urn:tag:age_ranges:qloo"
+        },
+        {
+          "id": "urn:tag:critical_descriptor:qloo:highly_regarded",
+          "name": "highly regarded",
+          "type": "urn:tag:critical_descriptor:qloo"
+        },
+        {
+          "id": "urn:tag:critical_descriptor:qloo:poignant",
+          "name": "poignant",
+          "type": "urn:tag:critical_descriptor:qloo"
+        },
+        {
+          "id": "urn:tag:critical_descriptor:qloo:introspective",
+          "name": "introspective",
+          "type": "urn:tag:critical_descriptor:qloo"
+        },
+        {
+          "id": "urn:tag:critical_descriptor:qloo:elegant",
+          "name": "elegant",
+          "type": "urn:tag:critical_descriptor:qloo"
+        },
+        {
+          "id": "urn:tag:critical_descriptor:qloo:subtle",
+          "name": "subtle",
+          "type": "urn:tag:critical_descriptor:qloo"
+        },
+        {
+          "id": "urn:tag:book_format:qloo:hardcover",
+          "name": "Hardcover",
+          "type": "urn:tag:book_format:qloo"
+        },
+        {
+          "id": "urn:tag:book_format:qloo:paperback",
+          "name": "Paperback",
+          "type": "urn:tag:book_format:qloo"
+        },
+        {
+          "id": "urn:tag:genre:qloo:historical_novel",
+          "name": "Historical novel",
+          "type": "urn:tag:genre:qloo"
+        },
+        {
+          "id": "urn:tag:keyword:qloo:butler",
+          "name": "Butler",
+          "type": "urn:tag:keyword:qloo"
+        },
+        {
+          "id": "urn:tag:keyword:qloo:loyalty",
+          "name": "Loyalty",
+          "type": "urn:tag:keyword:qloo"
+        },
+        {
+          "id": "urn:tag:keyword:qloo:dignity",
+          "name": "Dignity",
+          "type": "urn:tag:keyword:qloo"
+        },
+        {
+          "id": "urn:tag:keyword:qloo:love",
+          "name": "Love",
+          "type": "urn:tag:keyword:qloo"
+        },
+        {
+          "id": "urn:tag:keyword:qloo:nazi_sympathies",
+          "name": "Nazi Sympathies",
+          "type": "urn:tag:keyword:qloo"
+        },
+        {
+          "id": "urn:tag:keyword:qloo:reflection",
+          "name": "Reflection",
+          "type": "urn:tag:keyword:qloo"
+        },
+        {
+          "id": "urn:tag:keyword:qloo:duty",
+          "name": "Duty",
+          "type": "urn:tag:keyword:qloo"
+        },
+        {
+          "id": "urn:tag:keyword:qloo:england",
+          "name": "England",
+          "type": "urn:tag:keyword:qloo"
+        },
+        {
+          "id": "urn:tag:keyword:qloo:journey",
+          "name": "Journey",
+          "type": "urn:tag:keyword:qloo"
+        },
+        {
+          "id": "urn:tag:media_type:qloo:print",
+          "name": "Print",
+          "type": "urn:tag:media_type:qloo"
+        },
+        {
+          "id": "urn:tag:media_type:qloo:digital",
+          "name": "Digital",
+          "type": "urn:tag:media_type:qloo"
+        },
+        {
+          "id": "urn:tag:narrative:qloo:first_person",
+          "name": "first person",
+          "type": "urn:tag:narrative:qloo"
+        },
+        {
+          "id": "urn:tag:character:qloo:reflective",
+          "name": "Reflective",
+          "type": "urn:tag:character:qloo"
+        },
+        {
+          "id": "urn:tag:character:qloo:emotional",
+          "name": "Emotional",
+          "type": "urn:tag:character:qloo"
+        },
+        {
+          "id": "urn:tag:character:qloo:introspective",
+          "name": "Introspective",
+          "type": "urn:tag:character:qloo"
+        },
+        {
+          "id": "urn:tag:character:qloo:poignant",
+          "name": "Poignant",
+          "type": "urn:tag:character:qloo"
+        },
+        {
+          "id": "urn:tag:character:qloo:historical",
+          "name": "Historical",
+          "type": "urn:tag:character:qloo"
+        },
+        {
+          "id": "urn:tag:theme:qloo:dignity",
+          "name": "Dignity",
+          "type": "urn:tag:theme:qloo"
+        },
+        {
+          "id": "urn:tag:theme:qloo:duty",
+          "name": "Duty",
+          "type": "urn:tag:theme:qloo"
+        },
+        {
+          "id": "urn:tag:theme:qloo:love",
+          "name": "Love",
+          "type": "urn:tag:theme:qloo"
+        },
+        {
+          "id": "urn:tag:theme:qloo:reflection",
+          "name": "Reflection",
+          "type": "urn:tag:theme:qloo"
+        },
+        {
+          "id": "urn:tag:theme:qloo:identity",
+          "name": "Identity",
+          "type": "urn:tag:theme:qloo"
+        },
+        {
+          "id": "urn:tag:theme:qloo:regret",
+          "name": "Regret",
+          "type": "urn:tag:theme:qloo"
+        },
+        {
+          "id": "urn:tag:setting:qloo:west_country_england",
+          "name": "West Country, England",
+          "type": "urn:tag:setting:qloo"
+        },
+        {
+          "id": "urn:tag:setting:qloo:darlington_hall_near_oxford_england",
+          "name": "Darlington Hall, near Oxford, England",
+          "type": "urn:tag:setting:qloo"
+        },
+        {
+          "id": "urn:tag:motif:qloo:dignity",
+          "name": "Dignity",
+          "type": "urn:tag:motif:qloo"
+        },
+        {
+          "id": "urn:tag:motif:qloo:unspoken_love",
+          "name": "Unspoken Love",
+          "type": "urn:tag:motif:qloo"
+        },
+        {
+          "id": "urn:tag:motif:qloo:duty",
+          "name": "Duty",
+          "type": "urn:tag:motif:qloo"
+        },
+        {
+          "id": "urn:tag:motif:qloo:reflection",
+          "name": "Reflection",
+          "type": "urn:tag:motif:qloo"
+        },
+        {
+          "id": "urn:tag:subgenre:qloo:literary_fiction",
+          "name": "Literary Fiction",
+          "type": "urn:tag:subgenre:qloo"
+        },
+        {
+          "id": "urn:tag:time_period:qloo:1950s",
+          "name": "1950s",
+          "type": "urn:tag:time_period:qloo"
+        },
+        {
+          "id": "urn:tag:time_period:qloo:1920s",
+          "name": "1920s",
+          "type": "urn:tag:time_period:qloo"
+        },
+        {
+          "id": "urn:tag:time_period:qloo:1930s",
+          "name": "1930s",
+          "type": "urn:tag:time_period:qloo"
+        },
+        {
+          "id": "urn:tag:style:qloo:poignant",
+          "name": "Poignant",
+          "type": "urn:tag:style:qloo"
+        },
+        {
+          "id": "urn:tag:style:qloo:introspective",
+          "name": "Introspective",
+          "type": "urn:tag:style:qloo"
+        },
+        {
+          "id": "urn:tag:style:qloo:elegant",
+          "name": "Elegant",
+          "type": "urn:tag:style:qloo"
+        },
+        {
+          "id": "urn:tag:style:qloo:subtle",
+          "name": "Subtle",
+          "type": "urn:tag:style:qloo"
+        },
+        {
+          "id": "urn:tag:style:qloo:melancholic",
+          "name": "Melancholic",
+          "type": "urn:tag:style:qloo"
+        },
+        {
+          "id": "urn:tag:viewer_characteristic:qloo:reflective",
+          "name": "Reflective",
+          "type": "urn:tag:viewer_characteristic:qloo"
+        },
+        {
+          "id": "urn:tag:viewer_characteristic:qloo:thoughtful",
+          "name": "Thoughtful",
+          "type": "urn:tag:viewer_characteristic:qloo"
+        },
+        {
+          "id": "urn:tag:viewer_characteristic:qloo:emotionally_aware",
+          "name": "Emotionally-aware",
+          "type": "urn:tag:viewer_characteristic:qloo"
+        },
+        {
+          "id": "urn:tag:viewer_characteristic:qloo:historically_inclined",
+          "name": "Historically-inclined",
+          "type": "urn:tag:viewer_characteristic:qloo"
+        },
+        {
+          "id": "urn:tag:viewer_characteristic:qloo:literary_minded",
+          "name": "Literary-minded",
+          "type": "urn:tag:viewer_characteristic:qloo"
+        }
+      ],
+      "external": {
+        "goodreads": [
+          {
+            "id": "28921",
+            "user_rating": 4.14,
+            "user_ratings_count": 333838
+          }
+        ]
+      },
+      "properties": {
+        "description": "Librarian's note: See alternate cover edition of ISBN 0571225381 here.  In the summer of 1956, Stevens, a long-serving butler at Darlington Hall, decides to take a motoring trip through the West Country. The six-day excursion becomes a journey into the past of Stevens and England, a past that takes in fascism, two world wars, and an unrealised love between the butler and his housekeeper.",
+        "format": "Paperback",
+        "language": "English",
+        "page_count": 258,
+        "publication_date": "1989-05-01",
+        "publication_year": 1989,
+        "publisher": "Faber & Faber",
+        "title": "The Remains of the Day",
+        "image": {
+          "url": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327128714i/28921.jpg"
+        },
+        "akas": [
+          {
+            "value": "Was vom Tage übrigblieb",
+            "languages": [
+              "de"
+            ]
+          },
+          {
+            "value": "Lo que queda del día",
+            "languages": [
+              "es"
+            ]
+          },
+          {
+            "value": "Les Vestiges du jour",
+            "languages": [
+              "fr"
+            ]
+          }
+        ],
+        "short_descriptions": [
+          {
+            "value": "Ein englischer Butler denkt auf einer Reise über sein Leben im Dienst und eine unerwiderte Liebe nach.",
+            "languages": [
+              "de"
+            ]
+          },
+          {
+            "value": "Un mayordomo inglés recuerda su vida de servicio y un amor no confesado durante un viaje por carretera.",
+            "languages": [
+              "es"
+            ]
+          },
+          {
+            "value": "Un majordome anglais repense à sa vie de service et à un amour inavoué lors d'un voyage en voiture.",
+            "languages": [
+              "fr"
+            ]
+          }
+        ],
+        "short_description": "An English butler reflects on his past service and unspoken love during a road trip."
+      },
+      "disambiguation": "1989, Kazuo Ishiguro",
+      "query": {
+        "affinity": 0.6905058563413979
+      }
+    }
+  ],
+  "ranking_groups": [
+    [
+      "book-09"
+    ],
+    [
+      "book-16"
+    ],
+    [
+      "book-08"
+    ],
+    [
+      "book-02"
+    ],
+    [
+      "book-12"
+    ],
+    [
+      "book-10"
+    ],
+    [
+      "book-06"
+    ],
+    [
+      "book-11"
+    ],
+    [
+      "book-07"
+    ],
+    [
+      "book-01"
+    ],
+    [
+      "book-13"
+    ],
+    [
+      "book-14"
+    ],
+    [
+      "book-15"
+    ],
+    [
+      "book-03"
+    ],
+    [
+      "book-04"
+    ],
+    [
+      "book-05"
+    ]
+  ],
+  "applied_handoffs": [
+    {
+      "from": "P1",
+      "to": "P4",
+      "book": "Beloved"
+    },
+    {
+      "from": "P4",
+      "to": "P2",
+      "book": "The Dispossessed"
+    },
+    {
+      "from": "P2",
+      "to": "P3",
+      "book": "The Stranger"
+    },
+    {
+      "from": "P3",
+      "to": "P1",
+      "book": "The Great Gatsby"
+    }
+  ],
+  "human_preference_evaluation": "Pending; this is not evidence of participant satisfaction."
+}

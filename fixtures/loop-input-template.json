@@ -1,0 +1,13 @@
+{
+  "instructions": "Do not run this as real inventory. Copy fixtures/understudy.json, change kind to loop, replace candidates with 12–20 actually owned distinct books using candidate_template, replace constraints with constraints_template, and add the four participants below. Keep the experimental profiles, then add each person's public references to references and their profile's declared variant. Collect human_ranking over all book ids before revealing predictions; freeze afterward.",
+  "candidate_template": {"id":"book-01","name":"ACTUAL OWNED TITLE","author":"ACTUAL AUTHOR","type":"book","isbn":"OPTIONAL REAL ISBN","owner":"P1","language":"en","available":true,"offered":true},
+  "constraints_template": {"fit_floor":0.5,"max_cycle_length":4},
+  "provenance": "participant_inventory",
+  "inventory_attested": false,
+  "participants": [
+    {"id":"P1","profile_id":"profile-alt","languages":["en"],"references_attested":false,"human_ranking":[],"ranking_recorded_at":null},
+    {"id":"P2","profile_id":"profile-soul","languages":["en"],"references_attested":false,"human_ranking":[],"ranking_recorded_at":null},
+    {"id":"P3","profile_id":"profile-electronic","languages":["en"],"references_attested":false,"human_ranking":[],"ranking_recorded_at":null},
+    {"id":"P4","profile_id":"profile-roots","languages":["en"],"references_attested":false,"human_ranking":[],"ranking_recorded_at":null}
+  ]
+}

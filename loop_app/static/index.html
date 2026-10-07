@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f5f2e9">
+  <meta name="description" content="Your next chapter is on someone else's shelf. Loop organizes taste-guided book exchanges and adapts when plans change.">
+  <title>Loop — Good books. Better company.</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/circle.css">
+  <link rel="stylesheet" href="/reader.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <a href="#exchange" class="skip">Skip to the exchange</a>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Loop home"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M12 11C1 14 5 31 17 29l8-4c10-4 5-20-6-17l-7 4c-8 5-3 16 5 13l8-4"/></svg><span>loop<span class="brand-dot">.</span></span></a>
+    <nav aria-label="Main navigation"><a href="#exchange" class="active">The exchange</a><a href="#shelf">Shared shelf</a><button id="how-button">How it works</button></nav>
+    <div class="workspace-label"><span class="status-dot"></span><span id="workspace-mode">A demo among friends</span><span class="mini-avatar" id="workspace-avatar">AV</span></div>
+  </header>
+  <main class="page">
+    <section class="hero" aria-labelledby="hero-title">
+      <div><div class="eyebrow"><span class="sparkle">✳</span> A LITTLE CULTURAL SERENDIPITY</div><h1 id="hero-title">Good books.<br>Better <em>company.</em></h1><p>Your next chapter is on someone else’s shelf.<br>Let’s find a way for everyone to turn a new page.</p><div class="hero-cta"><button class="button primary" id="new-circle-hero">Start your own circle ↗</button><a href="#exchange">Explore the example ↓</a></div></div>
+      <div class="hero-art" aria-hidden="true"><div class="art-note">Already loved.<br>Ready for someone new.</div><div class="art-book one"><span>THE<br>GREAT<br>GATSBY</span><small>F. SCOTT FITZGERALD</small><i></i></div><div class="art-book two"><span>Beloved</span><small>TONI MORRISON</small><i></i></div><div class="art-book three"><span>A new<br><em>chapter.</em></span><i></i></div><svg class="art-arrow" viewBox="0 0 100 70"><path d="M10 13C75-10 94 45 40 45M40 45l15-15M40 45l20 8"/></svg></div>
+    </section>
+    <section class="circle-bar" aria-label="Workspace overview"><div class="circle-info"><div id="avatar-stack" class="avatar-stack"></div><div><button id="circle-menu" class="circle-menu"><strong id="circle-name">Our little reading circle</strong><span>⌄</span></button><span>4 readers <i>·</i> <span id="offered-count">16</span> offered books</span></div></div><div class="circle-actions"><button class="text-button" id="evidence-button"><span class="status-dot"></span> <span id="source-label">Saved Qloo rankings</span> <span>↗</span></button><button class="button ghost" id="invite-button">Invite readers ↗</button><button class="button primary" id="plan-button">Find a loop <span>↗</span></button></div></section>
+    <div id="connection-error" class="notice" hidden></div>
+    <div class="app-grid">
+      <div class="main-column">
+        <section id="exchange" class="panel exchange-panel" aria-labelledby="exchange-title">
+          <div class="panel-heading"><div><div class="eyebrow muted">01 / THE EXCHANGE</div><h2 id="exchange-title">A new chapter for everyone.</h2></div><span id="match-badge" class="badge">Loading the shelf…</span></div>
+          <div id="exchange-graph" class="graph-area"><div class="loading-mark">Connecting the shelves…</div></div>
+          <div id="exchange-note" class="exchange-note"></div>
+          <div class="disruption-row"><div><span class="tiny-icon">↻</span><span>A change of plans?</span><small>Watch the loop find another way.</small></div><button id="disruption-button" class="button subtle">Withdraw a selected book <span>↗</span></button></div>
+        </section>
+        <section id="handoffs" class="handoffs" aria-label="Proposed handoffs"></section>
+        <section id="shelf" class="shelf-section" aria-labelledby="shelf-title">
+          <div class="shelf-heading"><div><div class="eyebrow muted">02 / ALREADY ON OUR SHELVES</div><h2 id="shelf-title">Good stories, ready to travel.</h2></div><label class="shelf-search"><span>⌕</span><input id="shelf-search" type="search" placeholder="Find a book…" aria-label="Search the shared shelf"></label></div>
+          <div id="owner-filters" class="filter-row" role="group" aria-label="Filter by owner"></div>
+          <div id="shelf-grid" class="shelf-grid"></div>
+          <p class="shelf-footnote">Real book titles. Fictional owners and offered copies. Cover designs are illustrative.</p>
+        </section>
+      </div>
+      <aside class="side-column">
+        <section class="create-invite"><span>↗</span><div><strong>Make room for your people.</strong><p>Your friends. Your shelves. Your next chapters.</p><button id="create-circle-button">Create your reading circle →</button></div></section>
+        <section class="panel readers-panel" aria-labelledby="readers-title"><div class="side-heading"><div><div class="eyebrow muted">THE PEOPLE BEHIND THE PAGES</div><h3 id="readers-title">A little about our taste.</h3></div><span>↗</span></div><div class="taste-tabs" id="taste-tabs" role="group" aria-label="Change the demo taste lens"></div><div id="reader-list"></div><p class="panel-footnote">Try your own favorites in a reader’s profile.</p></section>
+        <section class="agent-panel" aria-labelledby="agent-title"><div class="agent-heading"><div class="agent-symbol">✳</div><div><h3 id="agent-title">A thoughtful little agent.</h3><span id="agent-status">Ready when you are</span></div><span class="agent-live-dot"></span></div><div id="chat-messages" class="chat-messages" aria-live="polite"></div><div id="agent-progress" hidden></div><div id="chat-starters" class="chat-starters"></div><form id="chat-form" class="chat-form"><textarea id="chat-input" rows="2" maxlength="1200" placeholder="Find a loop, or ask what makes it work…" aria-label="Message the Loop agent"></textarea><button id="chat-send" type="submit" aria-label="Send message">↗</button></form><div id="agent-mode" class="agent-mode"></div></section>
+        <section class="small-note"><span>✳</span><div><strong>More than a genre match.</strong><p>Music, movies, and the things you love can open a door to a book you wouldn’t have picked yourself.</p></div></section>
+      </aside>
+    </div>
+    <footer><a class="footer-brand" href="#">loop.</a><p>Keep the stories moving.</p><div><button id="footer-evidence">View evidence</button><button id="reset-button">Return to demo</button><a href="/api/export" download="loop-exchange.json">Download exchange ↗</a><a href="/api/backup" download="loop-workspace-backup.json">Back up circles ↗</a><button id="logout-button" hidden>Sign out</button></div></footer>
+  </main>
+  <dialog id="detail-dialog" class="detail-dialog"><button class="dialog-close" aria-label="Close dialog">×</button><div id="dialog-content"></div></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "instructions": "Replace every null report_path with a path to a captured run directory relative to this manifest. Freeze each case's inputs before observing predictions. Same pool, constraints, and solver for both sources. Synthetic packs are practice only.",
+  "cases": [
+    {"id":"easy-1","category":"straightforward","variant":"music_only","report_path":null},
+    {"id":"easy-2","category":"straightforward","variant":"music_only","report_path":null},
+    {"id":"easy-3","category":"straightforward","variant":"music_movies","report_path":null},
+    {"id":"conflict-1","category":"conflicting","variant":"music_only","report_path":null},
+    {"id":"conflict-2","category":"conflicting","variant":"music_movies","report_path":null},
+    {"id":"conflict-3","category":"conflicting","variant":"music_brands","report_path":null},
+    {"id":"cross-1","category":"cross_domain","variant":"music_movies","report_path":null},
+    {"id":"cross-2","category":"cross_domain","variant":"music_brands","report_path":null},
+    {"id":"disruption-1","category":"disruption","variant":"music_movies","report_path":null},
+    {"id":"disruption-2","category":"disruption","variant":"music_brands","report_path":null}
+  ]
+}

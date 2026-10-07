@@ -1,0 +1,2 @@
+# Only required for durable hosted storage; localhost remains standard-library only.
+psycopg[binary]==3.2.9
