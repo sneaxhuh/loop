@@ -1,6 +1,8 @@
 """Run with python3 -m loop_app. No installed packages are required."""
 import argparse
 import copy
+import hashlib
+import hmac
 import json
 import mimetypes
 import os
@@ -32,8 +34,22 @@ class LoopServer(ThreadingHTTPServer):
         self.workspace = workspace
         self.agent = Agent(workspace)
         self.auth = OrganizerAuth(os.getenv("LOOP_ADMIN_PASSWORD", ""))
-        self.csrf = secrets.token_urlsafe(32)
+        self.serverless = bool(os.getenv("VERCEL"))
+        csrf_key = (os.getenv("LOOP_ADMIN_PASSWORD") or secrets.token_urlsafe(32)).encode()
+        csrf_scope = ("loop-csrf:" + os.getenv("LOOP_DATABASE_NAMESPACE", "loop")).encode()
+        self.csrf = hmac.new(hashlib.sha256(csrf_key).digest(), csrf_scope, hashlib.sha256).hexdigest()
         self.jobs = {}
+
+    def save_job(self, job):
+        self.jobs[job["id"]] = job
+        if self.serverless and self.workspace.store.url:
+            self.workspace.store.write("jobs/" + job["id"] + ".json", redact(job, self.workspace.secrets))
+
+    def get_job(self, job_id):
+        job = self.jobs.get(job_id)
+        if job is None and self.serverless and self.workspace.store.url:
+            job = self.workspace.store.read("jobs/" + job_id + ".json")
+        return job
 
     def start_job(self, body):
         ws = self.workspace
@@ -48,7 +64,7 @@ class LoopServer(ThreadingHTTPServer):
             ws.busy = True
             job_id = secrets.token_hex(8)
             job = {"id": job_id, "status": "running", "trace": [], "started_at": utcnow()}
-            self.jobs[job_id] = job
+            self.save_job(job)
             if len(self.jobs) > 20:
                 del self.jobs[next(iter(self.jobs))]
 
@@ -78,7 +94,11 @@ class LoopServer(ThreadingHTTPServer):
                 with ws.lock:
                     ws.busy = False
                     job["finished_at"] = utcnow()
-        threading.Thread(target=work, daemon=True).start()
+                    self.save_job(job)
+        if self.serverless:
+            work()
+        else:
+            threading.Thread(target=work, daemon=True).start()
         return {"job_id": job_id}
 
     def start_reader_job(self, body):
@@ -98,7 +118,7 @@ class LoopServer(ThreadingHTTPServer):
             ws.busy = True
             job_id = secrets.token_hex(8)
             job = {"id": job_id, "status": "running", "trace": [], "started_at": utcnow()}
-            self.jobs[job_id] = dict(job, reader_key=body["token"])
+            self.save_job(dict(job, reader_key=body["token"]))
             job = self.jobs[job_id]
             if len(self.jobs) > 20:
                 del self.jobs[next(iter(self.jobs))]
@@ -133,7 +153,11 @@ class LoopServer(ThreadingHTTPServer):
                 with ws.lock:
                     ws.busy = False
                     job["finished_at"] = utcnow()
-        threading.Thread(target=work, daemon=True).start()
+                    self.save_job(job)
+        if self.serverless:
+            work()
+        else:
+            threading.Thread(target=work, daemon=True).start()
         return {"job_id": job_id}
 
 
@@ -166,6 +190,7 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         path = urlsplit(self.path).path
         try:
+            self.server.workspace.refresh()
             authenticated = self.server.auth.authenticated(self.headers.get("Cookie"))
             if path.startswith("/api/") and not authenticated:
                 return self.send(401, {"error": "Sign in to the organizer workspace."})
@@ -182,7 +207,7 @@ class Handler(BaseHTTPRequestHandler):
                 self.send(200, self.server.workspace.backup(), attachment="loop-workspace-backup.json")
             elif path.startswith("/api/jobs/"):
                 with self.server.workspace.lock:
-                    job = self.server.jobs.get(path.rsplit("/", 1)[-1])
+                    job = self.server.get_job(path.rsplit("/", 1)[-1])
                     require(job is not None, "This agent run is no longer available.")
                     self.send(200, {k: v for k, v in job.items() if k != "reader_key"})
             elif path in {"/", "/join", "/app.js", "/circle.js", "/reader.js", "/login.js", "/style.css", "/circle.css", "/reader.css", "/favicon.svg"}:
@@ -195,6 +220,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         try:
+            self.server.workspace.refresh()
             path = urlsplit(self.path).path
             reader_route = path.startswith("/api/reader/")
             if path != "/api/login" and not reader_route:
@@ -229,7 +255,7 @@ class Handler(BaseHTTPRequestHandler):
             elif path == "/api/reader/job":
                 with self.server.workspace.lock:
                     self.server.workspace.reader_identity(body.get("token"))
-                    job = self.server.jobs.get(body.get("job_id"))
+                    job = self.server.get_job(body.get("job_id"))
                     require(job is not None and secrets.compare_digest(job.get("reader_key", ""), body["token"]), "This reader run is no longer available.")
                     self.send(200, {k: v for k, v in job.items() if k != "reader_key"})
             elif path == "/api/reader/search":

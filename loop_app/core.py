@@ -59,6 +59,21 @@ class Workspace:
             self.plan(self.state, lambda *args: None)
         self.save()
 
+    def refresh(self):
+        """Reload durable state when requests may land on different instances."""
+        if not os.getenv("VERCEL") or not self.store.url:
+            return
+        saved = self.store.read("state.json")
+        if not saved or saved.get("revision") == self.state.get("revision"):
+            return
+        validate_fixture(saved["fixture"])
+        self.state = saved
+        self.cache.update(self.store.read("live-rankings.json", {}))
+        for values in saved["taste"].values():
+            self.known_references.update({x["qloo_id"].lower(): x for x in values})
+        for book in saved["fixture"]["candidates"]:
+            self.remember_book(book)
+
     def remap_ranking(self, row, candidates):
         result = copy.deepcopy(row)
         original = row.get("candidate_qloo", {c["id"]: c["qloo_id"].lower() for c in self.catalog["candidates"]})
@@ -103,6 +118,7 @@ class Workspace:
 
     def public(self):
         with self.lock:
+            self.refresh()
             result = copy.deepcopy(self.state)
             result.update(busy=self.busy, capabilities={"live_qloo": self.qloo is not None,
                 "persistent_storage": bool(self.store.url), "hosted": bool(os.getenv("LOOP_HOSTED")),
@@ -374,6 +390,7 @@ class Workspace:
 
     def commit(self, draft, message, engine, trace, expected):
         with self.lock:
+            self.refresh()
             require(self.state["revision"] == expected, "The workspace changed. Reload before applying this proposal.")
             draft["revision"] = expected + 1
             draft["messages"] = (draft["messages"] + [{"role": "assistant", "text": message, "engine": engine, "trace": trace}])[-24:]
@@ -389,6 +406,7 @@ class Workspace:
 
     def accept(self, pid, accepted, proposal_id, circle_id=None, source="organizer"):
         with self.lock:
+            self.refresh()
             require(not self.busy, "Wait for the current plan to finish.")
             state = self.circle_state(circle_id) if circle_id else copy.deepcopy(self.state)
             require(proposal_id == state.get("proposal_id"), "This proposal was replaced. Review the current incoming book before accepting.")
@@ -401,7 +419,10 @@ class Workspace:
 
     def circle_state(self, cid):
         require(identifier(cid), "Choose a saved reading circle.")
-        saved = copy.deepcopy(self.state) if cid == self.state["fixture"]["id"] else self.store.read("circles/" + cid + ".json")
+        if os.getenv("VERCEL") and self.store.url:
+            saved = self.store.read("circles/" + cid + ".json")
+        else:
+            saved = copy.deepcopy(self.state) if cid == self.state["fixture"]["id"] else self.store.read("circles/" + cid + ".json")
         require(saved is not None, "This circle is no longer available.")
         for values in saved["taste"].values():
             self.known_references.update({r["qloo_id"].lower(): r for r in values})
@@ -423,6 +444,7 @@ class Workspace:
 
     def commit_reader(self, draft, expected, trace):
         with self.lock:
+            self.refresh()
             require(self.circle_state(draft["fixture"]["id"])["revision"] == expected, "The circle changed. Review the new proposal.")
             draft["revision"] = expected + 1
             draft["timeline"] = (draft["timeline"] + [{"revision": draft["revision"], "at": utcnow(), "steps": trace, "status": draft["proposal"]["status"]}])[-20:]

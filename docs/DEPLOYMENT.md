@@ -36,6 +36,22 @@ python3 -m loop_app --workspace local/restored-circle --restore-backup /path/to/
 
 For a fresh hosted database/namespace, use the same command with `LOOP_DATABASE_URL` configured and the backup made available privately. Restore rejects an existing active workspace and invalid exchange proposals. Reader links are regenerated after restoration.
 
+## Vercel container deployment
+
+The repository also includes `Dockerfile.vercel` and `vercel.json`. Vercel builds the existing Python server as a Fluid Compute container, so the organizer and reader interfaces use the same routes as the local and Render deployments.
+
+Configure these server-side variables for Production, Preview, and Development:
+
+- `LOOP_ADMIN_PASSWORD`: a unique value of at least 16 characters
+- `LOOP_DATABASE_URL`: a PostgreSQL URL reachable from Vercel
+- `LOOP_DATABASE_NAMESPACE`: use a deployment-specific namespace such as `loop-vercel`
+- `QLOO_API_KEY` and `QLOO_BASE_URL=https://hackathon.api.qloo.com`
+- `GEMINI_API_KEY` and `GEMINI_MODEL=gemini-3.5-flash-lite`
+
+Durable storage is required for a working hosted deployment. Vercel may route requests to different instances, so the app uses a stable signed organizer session, a stable CSRF token, PostgreSQL-backed workspace documents, and PostgreSQL-backed job results. Agent actions complete within their initiating request before the browser polls the saved result.
+
+If reusing Render Postgres, use its **External Database URL**. Render's Internal Database URL resolves only inside Render's private network. Use a separate `LOOP_DATABASE_NAMESPACE` if the Render deployment remains active.
+
 ## Free-tier lifecycle
 
 [Render free web services](https://render.com/docs/free) sleep after fifteen minutes without traffic; the next request can take about a minute to start. The web filesystem is temporary, which is why Postgres holds the hosted workspace. Free Postgres expires after thirty days and has no provider backups. Download a workspace backup before expiration. The database created for this hackathon on October 7 expires **November 6, 2026**, after the October 30 submission target.
