@@ -8,10 +8,10 @@ from shootout.storage import Evidence, read_json
 
 
 class DocumentStore:
-    def __init__(self, directory):
+    def __init__(self, directory, namespace=None):
         self.directory = Path(directory)
         self.url = os.getenv("LOOP_DATABASE_URL")
-        self.namespace = os.getenv("LOOP_DATABASE_NAMESPACE", "loop")
+        self.namespace = namespace or os.getenv("LOOP_DATABASE_NAMESPACE", "loop")
         if self.url:
             import psycopg
             from psycopg.types.json import Jsonb

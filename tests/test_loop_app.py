@@ -257,5 +257,83 @@ class HttpTests(unittest.TestCase):
             self.request("/api/agent", {"revision": 0, "action": "reset"})
 
 
+class PublicDemoTests(unittest.TestCase):
+    def setUp(self):
+        from loop_app.auth import OrganizerAuth
+        HttpTests.setUp(self)
+        self.server.auth = OrganizerAuth("private-test-password-123")
+        self.server.demo_signing_key = self.server.auth.key
+
+    def tearDown(self):
+        HttpTests.tearDown(self)
+
+    def client(self):
+        from http.cookiejar import CookieJar
+        from urllib.request import HTTPCookieProcessor, build_opener
+        return build_opener(HTTPCookieProcessor(CookieJar()))
+
+    def fetch(self, client, path, body=None, csrf=None):
+        headers = {"Content-Type": "application/json"}
+        if csrf:
+            headers["X-Loop-Token"] = csrf
+        request = Request(self.url + path, data=None if body is None else json.dumps(body).encode(), headers=headers)
+        with client.open(request, timeout=10) as response:
+            return json.load(response)
+
+    def finish(self, client, job_id, reader_token=None):
+        for _ in range(100):
+            job = self.fetch(client, "/api/reader/job", {"token": reader_token, "job_id": job_id}) if reader_token else self.fetch(client, "/api/jobs/" + job_id)
+            if job["status"] != "running":
+                self.assertEqual(job["status"], "complete", job)
+                return
+            time.sleep(0.02)
+        self.fail("Demo action did not finish")
+
+    def test_public_entry_isolates_visitors_and_keeps_private_workspace_protected(self):
+        first, second, private = self.client(), self.client(), self.client()
+        with first.open(self.url) as response:
+            self.assertIn(b"Try Loop as an organizer", response.read())
+        with self.assertRaises(HTTPError) as denied:
+            self.fetch(first, "/api/state")
+        self.assertEqual(denied.exception.code, 401)
+        for client in (first, second):
+            self.fetch(client, "/api/demo", {})
+        state = self.fetch(first, "/api/state")
+        other = self.fetch(second, "/api/state")
+        self.assertTrue(state["visitor_demo"])
+        self.assertNotEqual(state["csrf_token"], other["csrf_token"])
+        job = self.fetch(first, "/api/agent", {"revision": state["revision"], "action": "withdraw", "copy_id": "book-03"}, state["csrf_token"])
+        self.finish(first, job["job_id"])
+        self.assertFalse(next(c for c in self.fetch(first, "/api/state")["fixture"]["candidates"] if c["id"] == "book-03")["available"])
+        self.assertEqual(self.fetch(second, "/api/state")["revision"], other["revision"])
+        self.fetch(private, "/api/login", {"password": "private-test-password-123"})
+        owner = self.fetch(private, "/api/state")
+        self.assertFalse(owner["visitor_demo"])
+        self.assertTrue(next(c for c in owner["fixture"]["candidates"] if c["id"] == "book-03")["available"])
+        # Discard process caches to simulate a restart: signed cookies reload
+        # exactly the same private demo documents, without resetting a proposal.
+        self.server.demos.clear()
+        self.assertEqual(self.fetch(first, "/api/state")["revision"], state["revision"] + 1)
+
+    def test_demo_reader_links_work_without_organizer_cookie_and_logout_revokes_access(self):
+        owner, reader = self.client(), self.client()
+        self.fetch(owner, "/api/demo", {})
+        state = self.fetch(owner, "/api/state")
+        invites = self.fetch(owner, "/api/invites", {}, state["csrf_token"])
+        token = invites["readers"][0]["token"]
+        view = self.fetch(reader, "/api/reader/view", {"token": token})
+        self.assertEqual(view["person"]["id"], "P1")
+        self.assertNotIn("messages", view)
+        job = self.fetch(reader, "/api/reader/update", {"token": token, "action": "decline", "revision": view["revision"], "proposal_id": view["proposal_id"]})
+        self.finish(reader, job["job_id"], token)
+        updated = self.fetch(reader, "/api/reader/view", {"token": token})
+        self.assertNotEqual(updated.get("incoming"), view.get("incoming"))
+        self.assertEqual(self.fetch(owner, "/api/state")["revision"], updated["revision"])
+        self.fetch(owner, "/api/logout", {}, state["csrf_token"])
+        with self.assertRaises(HTTPError) as denied:
+            self.fetch(owner, "/api/state")
+        self.assertEqual(denied.exception.code, 401)
+
+
 if __name__ == "__main__":
     unittest.main()

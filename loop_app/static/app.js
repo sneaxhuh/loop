@@ -83,7 +83,7 @@ function render() {
   $('connection-error').hidden = true;
   $('avatar-stack').innerHTML = people().map(avatar).join('');
   $('circle-name').textContent=state.fixture.name || 'Our little reading circle';
-  $('workspace-mode').textContent=isDemo()?'A demo among friends':'Your reading circle';
+  $('workspace-mode').textContent=state.visitor_demo?'Your own demo circle':isDemo()?'A demo among friends':'Your reading circle';
   $('workspace-avatar').textContent=people()[0].initials;
   $('reset-button').textContent=isDemo()?'Reset the demo':'Return to demo';
   document.querySelector('.hero-cta a').textContent=isDemo()?'Explore the example ↓':'Explore the circle ↓';

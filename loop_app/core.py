@@ -23,13 +23,13 @@ def ranking_key(candidates, references, source="qloo"):
 
 
 class Workspace:
-    def __init__(self, directory, transport=None, qloo=None):
+    def __init__(self, directory, transport=None, qloo=None, namespace=None):
         self.directory = Path(directory)
         self.directory.mkdir(parents=True, exist_ok=True)
         self.lock = threading.RLock()
         self.busy = False
         self.secrets = tuple(filter(None, [os.getenv("QLOO_API_KEY"), os.getenv("GEMINI_API_KEY"), os.getenv("LOOP_ADMIN_PASSWORD"), os.getenv("LOOP_DATABASE_URL")]))
-        self.store = DocumentStore(self.directory)
+        self.store = DocumentStore(self.directory, namespace=namespace)
         self.transport = transport or Transport(SavedEvidence(self.directory / "evidence", self.store, self.secrets),
                                                max_requests=120, timeout=40, intervals={"qloo": 0.22, "gemini": 12})
         self.qloo = qloo or (Qloo(self.transport) if os.getenv("QLOO_API_KEY") else None)

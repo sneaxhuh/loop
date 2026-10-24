@@ -10,6 +10,7 @@ import secrets
 import threading
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from http.cookies import CookieError, SimpleCookie
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -26,17 +27,15 @@ from shootout.storage import read_json
 STATIC = Path(__file__).parent / "static"
 
 
-class LoopServer(ThreadingHTTPServer):
-    daemon_threads = True
-
-    def __init__(self, address, workspace):
-        super().__init__(address, Handler)
+class LoopRuntime:
+    def __init__(self, workspace, demo=False):
         self.workspace = workspace
+        self.demo = demo
         self.agent = Agent(workspace)
-        self.auth = OrganizerAuth(os.getenv("LOOP_ADMIN_PASSWORD", ""))
+        self.auth = OrganizerAuth("" if demo else os.getenv("LOOP_ADMIN_PASSWORD", ""))
         self.serverless = bool(os.getenv("VERCEL"))
         csrf_key = (os.getenv("LOOP_ADMIN_PASSWORD") or secrets.token_urlsafe(32)).encode()
-        csrf_scope = ("loop-csrf:" + os.getenv("LOOP_DATABASE_NAMESPACE", "loop")).encode()
+        csrf_scope = ("loop-csrf:" + workspace.store.namespace).encode()
         self.csrf = hmac.new(hashlib.sha256(csrf_key).digest(), csrf_scope, hashlib.sha256).hexdigest()
         self.jobs = {}
 
@@ -161,6 +160,77 @@ class LoopServer(ThreadingHTTPServer):
         return {"job_id": job_id}
 
 
+class LoopServer(ThreadingHTTPServer, LoopRuntime):
+    daemon_threads = True
+
+    def __init__(self, address, workspace):
+        ThreadingHTTPServer.__init__(self, address, Handler)
+        LoopRuntime.__init__(self, workspace)
+        self.demo_lock = threading.RLock()
+        self.demos = {}
+        self.demo_signing_key = self.auth.key if self.auth.password else secrets.token_bytes(32)
+        self.demo_starts = {}
+
+    def demo_identity(self, cookie_header):
+        try:
+            cookie = SimpleCookie(cookie_header or "")
+            value = cookie["loop_demo"].value
+            identity, expires, signature = value.split(".")
+            payload = identity + "." + expires
+            expected = hmac.new(self.demo_signing_key, payload.encode(), hashlib.sha256).hexdigest()
+            if len(identity) == 32 and all(c in "0123456789abcdef" for c in identity) and int(expires) > time.time() and hmac.compare_digest(signature, expected):
+                return identity
+        except (KeyError, ValueError, TypeError, CookieError):
+            pass
+        return None
+
+    def demo_runtime(self, identity):
+        with self.demo_lock:
+            if identity not in self.demos:
+                # Recreate the visitor's namespace after restarts without sharing
+                # mutable workspace objects or changing process environment vars.
+                directory = self.workspace.directory / "demos" / identity
+                namespace = self.workspace.store.namespace + "-demo-" + identity
+                ws = Workspace(directory, namespace=namespace)
+                runtime = LoopRuntime(ws, demo=True)
+                runtime.demo_identity = identity
+                # Bound API usage per visitor while all saved-profile controls
+                # continue to work without provider calls.
+                ws.transport.max_requests = 24
+                self.demos[identity] = runtime
+                if len(self.demos) > 64:
+                    for key, old in list(self.demos.items()):
+                        if key != identity and not old.workspace.busy:
+                            del self.demos[key]
+                            break
+            return self.demos[identity]
+
+    def runtime_for(self, cookie_header, reader_token=None):
+        if reader_token:
+            marker = hashlib.sha256(reader_token.encode()).hexdigest()
+            identity = self.workspace.store.read("demo-readers/" + marker + ".json")
+            return self.demo_runtime(identity) if identity else self
+        identity = self.demo_identity(cookie_header)
+        if identity:
+            return self.demo_runtime(identity)
+        return self
+
+    def start_demo(self, cookie_header, address):
+        identity = self.demo_identity(cookie_header)
+        if not identity:
+            now = time.time()
+            with self.demo_lock:
+                self.demo_starts = {key: value for key, value in self.demo_starts.items() if now - value[0] < 3600}
+                start, count = self.demo_starts.get(address, (now, 0))
+                require(count < 12, "Several demo circles were opened recently. Please return to an existing demo or try again later.")
+                self.demo_starts[address] = (start, count + 1)
+            identity = secrets.token_hex(16)
+        self.demo_runtime(identity)
+        payload = identity + "." + str(int(time.time()) + 7 * 86400)
+        signature = hmac.new(self.demo_signing_key, payload.encode(), hashlib.sha256).hexdigest()
+        return payload + "." + signature
+
+
 class Handler(BaseHTTPRequestHandler):
     server_version = "Loop/1.0"
 
@@ -183,19 +253,22 @@ class Handler(BaseHTTPRequestHandler):
         if attachment:
             self.send_header("Content-Disposition", 'attachment; filename="' + attachment + '"')
         if cookie:
-            self.send_header("Set-Cookie", cookie)
+            for value in cookie if isinstance(cookie, list) else [cookie]:
+                self.send_header("Set-Cookie", value)
         self.end_headers()
         self.wfile.write(data)
 
     def do_GET(self):
         path = urlsplit(self.path).path
         try:
+            self.root_server = self.server
+            self.server = self.root_server.runtime_for(self.headers.get("Cookie"))
             self.server.workspace.refresh()
             authenticated = self.server.auth.authenticated(self.headers.get("Cookie"))
             if path.startswith("/api/") and not authenticated:
                 return self.send(401, {"error": "Sign in to the organizer workspace."})
             if path == "/api/state":
-                self.send(200, dict(self.server.workspace.public(), csrf_token=self.server.csrf, organizer_login=bool(self.server.auth.password)))
+                self.send(200, dict(self.server.workspace.public(), csrf_token=self.server.csrf, organizer_login=bool(self.server.auth.password) or self.server.demo, visitor_demo=self.server.demo))
             elif path == "/healthz":
                 self.send(200, {"status": "ok", "service": "Loop"})
             elif path == "/api/circles":
@@ -220,13 +293,9 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         try:
-            self.server.workspace.refresh()
+            self.root_server = self.server
             path = urlsplit(self.path).path
             reader_route = path.startswith("/api/reader/")
-            if path != "/api/login" and not reader_route:
-                if not self.server.auth.authenticated(self.headers.get("Cookie")):
-                    return self.send(401, {"error": "Sign in to the organizer workspace."})
-                require(secrets.compare_digest(self.headers.get("X-Loop-Token", ""), self.server.csrf), "Reload the page before making changes.")
             origin = self.headers.get("Origin")
             require(not origin or urlsplit(origin).netloc == self.headers.get("Host"), "Cross-origin changes are not allowed.")
             require(self.headers.get("Content-Type", "").split(";")[0] == "application/json", "Use a JSON request.")
@@ -234,15 +303,26 @@ class Handler(BaseHTTPRequestHandler):
             require(0 < length <= 24000, "Request is too large or empty.")
             body = json.loads(self.rfile.read(length))
             require(isinstance(body, dict), "Request must be a JSON object.")
+            if path == "/api/demo":
+                address = self.headers.get("X-Forwarded-For", self.client_address[0]).split(",")[0].strip()
+                session = self.root_server.start_demo(self.headers.get("Cookie"), address)
+                secure = "; Secure" if self.headers.get("X-Forwarded-Proto") == "https" else ""
+                return self.send(200, {"status": "demo_ready"}, cookie="loop_demo=" + session + "; Path=/; HttpOnly; SameSite=Lax; Max-Age=604800" + secure)
+            self.server = self.root_server if path == "/api/login" else self.root_server.runtime_for(self.headers.get("Cookie"), body.get("token") if reader_route else None)
+            self.server.workspace.refresh()
+            if path != "/api/login" and not reader_route:
+                if not self.server.auth.authenticated(self.headers.get("Cookie")):
+                    return self.send(401, {"error": "Sign in to the organizer workspace."})
+                require(secrets.compare_digest(self.headers.get("X-Loop-Token", ""), self.server.csrf), "Reload the page before making changes.")
             if path == "/api/login":
                 with self.server.workspace.lock:
                     session, error = self.server.auth.login(body.get("password"), self.client_address[0])
                 if error:
                     return self.send(403, {"error": error})
                 secure = "; Secure" if self.headers.get("X-Forwarded-Proto") == "https" else ""
-                self.send(200, {"status": "signed_in"}, cookie="loop_organizer=" + session + "; Path=/; HttpOnly; SameSite=Lax; Max-Age=604800" + secure)
+                self.send(200, {"status": "signed_in"}, cookie=["loop_organizer=" + session + "; Path=/; HttpOnly; SameSite=Lax; Max-Age=604800" + secure, "loop_demo=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0" + secure])
             elif path == "/api/logout":
-                self.send(200, {"status": "signed_out"}, cookie="loop_organizer=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0")
+                self.send(200, {"status": "signed_out"}, cookie=["loop_organizer=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0", "loop_demo=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0"])
             elif path == "/api/reader/view":
                 self.send(200, self.server.workspace.reader_view(body.get("token")))
             elif path == "/api/reader/accept":
@@ -263,7 +343,12 @@ class Handler(BaseHTTPRequestHandler):
                     self.server.workspace.reader_identity(body.get("token"))
                     self.send(200, self.server.workspace.search(body.get("query"), body.get("type")))
             elif path == "/api/invites":
-                self.send(200, self.server.workspace.invites(rotate=body.get("rotate") is True))
+                invitations = self.server.workspace.invites(rotate=body.get("rotate") is True)
+                if self.server.demo:
+                    for reader in invitations["readers"]:
+                        marker = hashlib.sha256(reader["token"].encode()).hexdigest()
+                        self.root_server.workspace.store.write("demo-readers/" + marker + ".json", self.server.demo_identity)
+                self.send(200, invitations)
             elif path == "/api/agent":
                 self.send(202, self.server.start_job(body))
             elif path == "/api/accept":

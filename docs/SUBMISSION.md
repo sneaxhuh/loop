@@ -1,6 +1,6 @@
 # Loop — Your next chapter is on someone else's shelf
 
-**Draft submission copy.** [The published prototype](https://loop-qloo.onrender.com) and source are ready; add your recorded video before submitting on Devpost. Actual participant evaluation remains pending. Organizer access is password protected; provide judges with a dedicated fictional-reader link or temporary organizer access through the submission's private access instructions.
+**Draft submission copy.** Open [the published prototype](https://loop-qloo.onrender.com) and click **Try Loop as an organizer**. No password is needed. Each visitor gets a separate fictional circle with working exchange, disruption, evidence, and reader-review controls. **Open my private organizer workspace** is reserved for the owner's password-protected circles. Actual participant evaluation remains pending.
 
 ## Problem and product
 

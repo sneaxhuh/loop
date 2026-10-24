@@ -16,6 +16,8 @@ If creating resources separately, select the same workspace and region for both.
 
 Visit the web service URL. Use the generated `LOOP_ADMIN_PASSWORD` from the service's Environment tab to sign in as the organizer. Hosted organizer APIs require that login and a CSRF token. Localhost stays immediately accessible unless you explicitly set an organizer password.
 
+Judges and other visitors can click **Try Loop as an organizer** without a password. A signed browser cookie selects a separate workspace namespace and directory for that visitor. Changes, reviews, job results, and invitation tokens belong to that demo alone. Reader links continue to work in a different browser, and the same signed demo session reloads its persisted namespace after a restart. Logging out clears the demo cookie. Provider calls are bounded per active demo runtime; the saved profiles and deterministic planning controls work without live calls.
+
 Click **Invite readers**. Send each person their own private `/join#token=...` link. A reader can inspect only their proposed handoffs, own offers, and own references. They can accept, pass, withdraw/restore their own copies, or change their favorites. A pass and offer/profile change trigger deterministic replanning. New proposals clear reviews. Readers can review saved circles even when the organizer opens a different circle.
 
 Private link tokens stay in fragments and bearer request bodies, and are stored separately from public evidence. Anyone holding a link can act as that reader. **Replace private links** revokes the previous links. Organizer-recorded reviews and reviews through reader links are labeled separately; neither method independently verifies identity.
@@ -55,6 +57,8 @@ If reusing Render Postgres, use its **External Database URL**. Render's Internal
 ## Free-tier lifecycle
 
 [Render free web services](https://render.com/docs/free) sleep after fifteen minutes without traffic; the next request can take about a minute to start. The web filesystem is temporary, which is why Postgres holds the hosted workspace. Free Postgres expires after thirty days and has no provider backups. Download a workspace backup before expiration. The database created for this hackathon on October 7 expires **November 6, 2026**, after the October 30 submission target.
+
+That database expiration falls during the judging period. A replacement or paid upgrade is required to keep persisted circles available through judging. Render permits only one active free Postgres instance per workspace, so a second free database cannot be created alongside the existing one. Preserve a complete backup before any free-database cutover; do not delete the current instance just to free the slot.
 
 The workspace's free compute-hour allowance is shared with other services. No existing unrelated services were changed for this project. Hosting on a free plan does not establish a provider API account's billing entitlement or remaining quota; the app's request budget bounds each server run.
 
