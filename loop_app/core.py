@@ -506,10 +506,45 @@ class Workspace:
     def backup(self):
         with self.lock:
             # Private reader links are regenerated after restore and never included in downloadable evidence.
-            return {"product": "Loop", "version": 1, "generated_at": utcnow(),
+            return {"product": "Loop", "version": 1, "generated_at": utcnow(), "active_circle_id": self.state["fixture"]["id"],
                 "circles": [self.store.read(name) for name in self.store.names("circles/")],
                 "live_rankings": self.store.read("live-rankings.json", {}),
                 "evidence": [json.loads(line) for line in self.transport.evidence.path.read_text(encoding="utf-8").splitlines()] if self.transport.evidence.path.exists() else []}
+
+    def restore_backup(self, backup):
+        """Restore an owner's export only into a pristine replacement workspace."""
+        with self.lock:
+            require(not self.busy, "Wait for the current plan to finish.")
+            require(not self.store.read("restored.json") and self.state["revision"] == 0 and self.state["fixture"]["id"] == self.catalog["id"] and len(self.store.names("circles/")) == 1,
+                    "Restore is available only in a fresh workspace. Existing circles have been preserved.")
+            require(isinstance(backup, dict) and backup.get("product") == "Loop" and backup.get("version") == 1, "Choose a Loop workspace backup.")
+            circles = backup.get("circles")
+            require(isinstance(circles, list) and 0 < len(circles) <= 100, "The backup must contain one to 100 circles.")
+            documents = {}
+            for state in circles:
+                validate_fixture(state["fixture"])
+                cid = state["fixture"]["id"]
+                require(identifier(cid) and "circles/" + cid + ".json" not in documents, "The backup contains invalid or duplicate circle IDs.")
+                require(validate_exchange(state["fixture"], state["proposal"], state["pool"], state["matrix"])["valid"], "The backup contains an invalid proposal.")
+                require(isinstance(state.get("revision"), int) and state["revision"] >= 0 and isinstance(state.get("taste"), dict), "The backup has invalid workspace state.")
+                documents["circles/" + cid + ".json"] = redact(state, self.secrets)
+            active = backup.get("active_circle_id", circles[0]["fixture"]["id"])
+            require("circles/" + str(active) + ".json" in documents, "The active circle is absent from the backup.")
+            cache, evidence = backup.get("live_rankings", {}), backup.get("evidence", [])
+            require(isinstance(cache, dict) and isinstance(evidence, list) and all(isinstance(row, dict) for row in evidence), "The backup has invalid evidence.")
+            documents.update({"state.json": documents["circles/" + active + ".json"], "live-rankings.json": redact(cache, self.secrets), "evidence.json": redact(evidence, self.secrets), "restored.json": {"at": utcnow(), "circles": len(circles)}})
+            self.store.write_many(documents)
+            self.state = documents["state.json"]
+            self.cache.update(cache)
+            path = self.transport.evidence.path
+            path.write_text("".join(json.dumps(row, ensure_ascii=False) + "\n" for row in documents["evidence.json"]), encoding="utf-8")
+            self.transport.evidence.count = len(evidence)
+            for state in circles:
+                for values in state["taste"].values():
+                    self.known_references.update({r["qloo_id"].lower(): r for r in values})
+                for book in state["fixture"]["candidates"]:
+                    self.remember_book(book)
+            return {"status": "restored", "circles": len(circles), "reader_links": "Regenerate reader invitations after restoring."}
 
     def search(self, query, kind):
         require(kind in {"artist", "movie", "brand", "book"}, "Choose artist, movie, brand, or book.")

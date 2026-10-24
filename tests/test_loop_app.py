@@ -334,6 +334,32 @@ class PublicDemoTests(unittest.TestCase):
             self.fetch(owner, "/api/state")
         self.assertEqual(denied.exception.code, 401)
 
+    def test_backup_restore_requires_private_login_and_preserves_restored_proposal(self):
+        saved = Workspace(Path(self.temp.name) / "saved")
+        draft = copy.deepcopy(saved.state)
+        saved.action(draft, "withdraw", {"copy_id": "book-03"}, lambda *args: None)
+        saved.commit(draft, "Saved before migration", "workspace tools", [], 0)
+        backup = saved.backup()
+        demo, private = self.client(), self.client()
+        self.fetch(demo, "/api/demo", {})
+        guest = self.fetch(demo, "/api/state")
+        with self.assertRaises(HTTPError):
+            self.fetch(demo, "/api/restore", {"backup": backup}, guest["csrf_token"])
+        self.fetch(private, "/api/login", {"password": "private-test-password-123"})
+        before = self.fetch(private, "/api/state")
+        corrupted = copy.deepcopy(backup)
+        corrupted["circles"][0]["proposal"]["moves"][0]["candidate_id"] = "missing-copy"
+        with self.assertRaises(HTTPError):
+            self.fetch(private, "/api/restore", {"backup": corrupted}, before["csrf_token"])
+        self.assertEqual(self.fetch(private, "/api/state")["proposal_id"], before["proposal_id"])
+        restored = self.fetch(private, "/api/restore", {"backup": backup}, before["csrf_token"])
+        self.assertEqual(restored["status"], "restored")
+        after = self.fetch(private, "/api/state")
+        self.assertEqual(after["proposal_id"], saved.state["proposal_id"])
+        self.assertFalse(next(c for c in after["fixture"]["candidates"] if c["id"] == "book-03")["available"])
+        with self.assertRaises(HTTPError):
+            self.fetch(private, "/api/restore", {"backup": backup}, after["csrf_token"])
+
 
 if __name__ == "__main__":
     unittest.main()

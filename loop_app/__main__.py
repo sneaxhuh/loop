@@ -300,7 +300,9 @@ class Handler(BaseHTTPRequestHandler):
             require(not origin or urlsplit(origin).netloc == self.headers.get("Host"), "Cross-origin changes are not allowed.")
             require(self.headers.get("Content-Type", "").split(";")[0] == "application/json", "Use a JSON request.")
             length = int(self.headers.get("Content-Length", "0"))
-            require(0 < length <= 24000, "Request is too large or empty.")
+            if path == "/api/restore":
+                require(self.root_server.auth.authenticated(self.headers.get("Cookie")) and self.root_server.auth.password and not self.root_server.demo_identity(self.headers.get("Cookie")), "Sign in to the private organizer workspace to restore a backup.")
+            require(0 < length <= (4_000_000 if path == "/api/restore" else 24000), "Request is too large or empty.")
             body = json.loads(self.rfile.read(length))
             require(isinstance(body, dict), "Request must be a JSON object.")
             if path == "/api/demo":
@@ -354,6 +356,9 @@ class Handler(BaseHTTPRequestHandler):
             elif path == "/api/accept":
                 self.server.workspace.accept(body.get("participant_id"), body.get("accepted"), body.get("proposal_id"))
                 self.send(200, {"status": "recorded", "simulated": self.server.workspace.state["fixture"]["provenance"] == "synthetic_test"})
+            elif path == "/api/restore":
+                require(not self.server.demo, "Backups can only be restored by the private organizer.")
+                self.send(200, self.server.workspace.restore_backup(body.get("backup")))
             elif path == "/api/search":
                 self.send(200, self.server.workspace.search(body.get("query"), body.get("type")))
             else:

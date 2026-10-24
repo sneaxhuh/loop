@@ -79,6 +79,7 @@ async function run(action, data = {}, message = '') {
 }
 function render() {
   $('logout-button').hidden=!state.organizer_login;
+  $('restore-backup').hidden=state.visitor_demo||!state.organizer_login||state.revision!==0;
   $('storage-notice').hidden=!(state.capabilities.hosted&&!state.capabilities.persistent_storage);
   $('connection-error').hidden = true;
   $('avatar-stack').innerHTML = people().map(avatar).join('');
@@ -258,6 +259,17 @@ $('reset-button').onclick=()=>{ owner='all';query='';$('shelf-search').value='';
 $('evidence-button').onclick=showEvidence;
 $('invite-button').onclick=()=>showInvites();
 $('logout-button').onclick=async()=>{await api('/api/logout',{});location.assign('/');};
+$('restore-backup').onclick=()=>$('backup-file').click();
+$('backup-file').onchange=async event=>{
+  const file=event.target.files[0];if(!file)return;
+  try{
+    if(file.size>3900000)throw new Error('This backup is too large for browser restore. Keep the file and contact your organizer.');
+    const backup=JSON.parse(await file.text());
+    if(!confirm('Restore your saved circles into this fresh workspace? Reader invitations will need to be generated again.'))return;
+    const result=await api('/api/restore',{backup});await reload();toast(`Restored ${result.circles} circles. Create fresh reader invitations before sharing.`);
+  }catch(error){toast(error.message||'The backup could not be restored. Your file is unchanged.');}
+  finally{event.target.value='';}
+};
 $('footer-evidence').onclick=showEvidence;
 $('how-button').onclick=showHow;
 const circleUI=createCircleController({getState:()=>state,api,run,dialog,closeDialog,escape,toast});

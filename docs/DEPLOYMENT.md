@@ -60,6 +60,8 @@ If reusing Render Postgres, use its **External Database URL**. Render's Internal
 
 That database expiration falls during the judging period. A replacement or paid upgrade is required to keep persisted circles available through judging. Render permits only one active free Postgres instance per workspace, so a second free database cannot be created alongside the existing one. Preserve a complete backup before any free-database cutover; do not delete the current instance just to free the slot.
 
+For a free replacement, first sign into **Open my private organizer workspace** and download **Back up circles**. Validate and retain that JSON file before deleting the old database. Create a new free Postgres instance in Singapore, copy its Internal Database URL into the existing web service's `LOOP_DATABASE_URL`, and deploy. Sign into the fresh private workspace and use **Restore circles** in the footer to select the saved JSON. Restore validates all exchange proposals before saving, rejects an existing or already-restored workspace, and is unavailable to public demo visitors. Reader invitations must be generated again after restoration. A newly created free database expires 30 days after its creation; check its actual expiration date in Render.
+
 The workspace's free compute-hour allowance is shared with other services. No existing unrelated services were changed for this project. Hosting on a free plan does not establish a provider API account's billing entitlement or remaining quota; the app's request budget bounds each server run.
 
 See the official [Blueprint reference](https://render.com/docs/blueprint-spec) and [Python version settings](https://render.com/docs/python-version) for hosting configuration.
